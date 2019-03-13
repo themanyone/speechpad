@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Free Voice Notepad</title>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta property="og:title" content="Best Online Dictation">
+    <meta property="og:description" content="Realtime Speech Recognition for the Web by Henry Kroll III, www.thenerdshow.com">
+    <meta property="og:image" content="http://thenerdshow.com/.ckeditor/plugins/speech/speech_plugin.jpg">
+    <meta property="og:image" content="http://thenerdshow.com/images/leap-motion-3x.jpg">
+    <meta property="og:url" content="http://thenerdshow.com/.ckeditor/edit_help.html">
+    <link rel="stylesheet" type="text/css" href="/.ckeditor/adbar.css?v=1.2">
+    <style>
+body {
+    font-family: arial,helvetica,sans-serif;
+}
+.left {
+    float:left;
+    padding-right:6px;
+    }
+    </style>
+</head>
+    
+<body>
+
+
+
+    <h1><a href="/edit.html">Free Voice Notepad</a></h1>
+
+<p>A full-featured text / HTML editor in the browser with speech recognition. Free Voice Notepad is perfect for mobile, library, and school computers that don't allow software to be installed. We use it all the time.</p>
+    
+<h2>Using Voice Commands</h2>
+
+    <p>Press the maximize <img alt="" src="maximize.gif" style="width: 30px; height: 28px;"> <kbd>Alt</kbd>+<kbd>M</kbd> button in the toolbar for an ad-free experience.</p>
+
+    <ul>
+      <li>Or click the microphone or press <kbd>Ctrl</kbd>+<kbd>D</kbd> and say &quot;maximize.&quot;</li>
+      <li>Highlight text with the mouse and start talking to change it.</li>
+      <li>Say &quot;whoops&quot;, &quot;undo&quot;, or &quot;what&#39;s&quot; to undo mistakes.</li>
+      <li>Press <kbd>Ctrl</kbd>+<kbd>A</kbd> or say &quot;select all&quot; to select the page and press <kbd>Ctrl</kbd>+<kbd>C</kbd> to copy.</li>
+      <li>To post to HTML forums, click Source button and copy and paste from there.</li>
+      <li>Say &quot;file open&quot; or press <kbd>Ctrl</kbd>+<kbd>O</kbd> to open a local file for editing.</li>
+      <li>Say &quot;file save&quot; or press <kbd>Ctrl</kbd>+<kbd>S</kbd> to save file locally to disk.* (<em><a href="#alert">See warnings</a>)</em></li>
+    </ul>
+
+    <p><a href="/edit.html"><img alt="Dictation Screenshot" src="//thenerdshow.com/.ckeditor/plugins/speech/speech_plugin.jpg" style="width: 374px; height: 319px;"></a></p>
+
+    <p><a href="/edit.html">Try it.</a></p>
+
+    <h2>Features</h2>
+
+    <p>There&#39;s no question online voice dictation can speed up productivity. Of all the FREE voice dictation apps we tested, <a href="//play.google.com/store/apps/details?id=com.khymaera.android.listnotefree">ListNote</a> and the <a href="//play.google.com/store/apps/details?id=edu.apollogrp.android.classroom.activity">Phoenix mobile</a> app (links to the Android play store) stood out as some of the best, but they all left something to be desired. Using a PC is better for posting complex responses to the class forums with formulas and references, but we wanted a "zero installation" web app that could also be used on locked tablets and library computers that restrict downloads of new software. Now we can have a fully-functional text / HTML editing notepad with voice dictation in a web page.</p>
+
+    <p>Having already authored <a href="/freespeech.html">FreeSpeech</a>, a realtime dictation applications for Linux desktop PCs, it was time to bring that experience to the web. Like many others, we chose to use The <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">Web Speech API</a>. The API is not designed to compete with dictation applications like DragonNaturally&trade; Speaking, and many applications based on it attest to this fact; however, when we combined it with <a href="//ckeditor.com/">CKEditor</a>&apos;s powerful HTML editor, and added the following features, we made it quite usable. The hands-free voice commands are a big improvement.</p>
+    
+    <ul>
+      <li>CKEditor&apos;s <a href="//ckeditor.com/features">hundreds of features.</a></li>
+      <li>Fixes Android's missing Undo button.</li>
+      <li>Prevents Android's voice keyboard from taking up half the screen.</li>
+      <li>Improves their buggy auto-capitalization and spacing.</li>
+      <li>Spend less time editing and more time dictating.</li>
+      <li>Automatically chooses language from browser settings.</li>
+      <li>Autosaves to temporary local storage. Never lose work.</li>
+      <li>Loading and saving of basic HTML documents.*</li>
+      <li>Permits simultaneous editing and dictation.</li>
+    </ul>
+
+    <p><a id="alert" name="alert"></a>*Note: <em>CKEditor is a friendly WYSIWYG editor, not a true source code editor. It automatically reformats the source in ways that advanced users may not prefer.</em></p>
+
+    <h2>Voice Commands</h2>
+
+    <table cellpadding="1" cellspacing="1" style="border:1px solid black">
+      <thead>
+        <tr>
+          <th scope="col">Spoken Command</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>make a link to</td>
+          <td>&lt;a href=&quot;</td>
+        </tr>
+        <tr>
+          <td>with link text</td>
+          <td>&quot;&gt;...&lt;/a&gt;</td>
+        </tr>
+        <tr>
+          <td>whoops</td>
+          <td>undo recent edits</td>
+        </tr>
+        <tr>
+          <td>select all</td>
+          <td>select all text</td>
+        </tr>
+        <tr>
+          <td>maximize</td>
+          <td>expand editor</td>
+        </tr>
+        <tr>
+          <td>file save</td>
+          <td>save document</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Spoken Symbols</h2>
+
+    <ul>
+      <li>period = .</li>
+      <li>comma = ,</li>
+      <li>exclamation point = !</li>
+      <li>question mark = ?</li>
+      <li>colon = :</li>
+      <li>semicolon = ;</li>
+      <li>HTTP colon slash slash = http://</li>
+      <li>apostrophe = &#39;</li>
+      <li>tab key = \t</li>
+      <li>ellipses = &hellip;</li>
+      <li>ampersand = &amp;</li>
+      <li>asterisk = *</li>
+      <li>at sign = @</li>
+      <li>at symbol = @</li>
+      <li>backslash = \</li>
+      <li>open bracket = [</li>
+      <li>close bracket = ]</li>
+      <li>open parentheses = (</li>
+      <li>close parentheses = )</li>
+      <li>less.than symbol = &lt;</li>
+      <li>greater.than symbol = &gt;</li>
+      <li>open quote = &quot;</li>
+      <li>close quote = &quot;</li>
+      <li>open curly quote = &ldquo;</li>
+      <li>close curly quote = &rdquo;</li>
+      <li>long dash = &mdash;</li>
+      <li>short dash = &ndash;</li>
+      <li>degrees Farenheit, &deg;F</li>
+      <li>degrees Celcius, &deg;C</li>
+      <li>Hashtag stuff = #stuff</li>
+      <li>Five dollars = $5</li>
+      <li>Copyright symbol = &copy;</li>
+      <li>trademark symbol = &trade;</li>
+    </ul>
+    
+    <h2>Support and Development</h2>
+    
+    <p><b>Copying.</b> <a href="//ckeditor.com/">CKEditor</a> and our accompanying speech plugin runs in a web page. As such, web pages may be saved, modified, and re-used. It would be a simple matter to obtain <a href="//ckeditor.com/">CKEditor</a> and serve it from a web server along with a <a href="//www.blogsdna.com/35/top-6-freeware-website-mirroring-tools-software.htm">mirrored</a> copy of our speech plug-in. In fact, it would be nearly impossible to prevent such a scenario from happening.</p>
+    
+    <p><em>As of this writing, the HTML5 standard <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">Web Speech API</a> employed by this editor requires at least Firefox 49, Chrome 33, or Edge, but <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#Browser_compatibility">support for other browsers may become available</a> as it is in development.</em> If Chrome does not remember the permissions of the microphone, try going to the <a href="https://thenerdshow.com/edit.html">secure site</a>. If speech recognition does not work, you may still use it like a regular notepad text editor. The editor works even while offline, but most browsers&apos; security prevents JavaScript from running from a locally-saved copy. <a href="//ckeditor.com/">CKEditor</a> would need to be served by a web server such as a local intranet if it is to be adapted strictly for offline use, or behind a firewall, such as a classroom environment. In addition, Chrome-based browsers and apps would need to communicate with Google servers (or a locally-hosted facsimile) to decode the speech information. Offline support for the Web Speech API for Chrome, or fallover to the operating system's default speech recognition engine is rumored to be in development, however. Try updating.</p>
+
+    <p>We owe a debt to the creators of <a href="//ckeditor.com/">CKEditor</a>, the makers of JavaScript, our great educational institutions, and those who have supported us over the years, and so we have to charge for our time, but we would be more than happy to help. By all means, please let us know if you want more commands or customizations, or if you want to hire us to speech-enable your website. :)</p>
+
+    <h2>Privacy notice</h2>
+
+    <p>Editing and saving occurs locally on your computer, but Chrome's speech API sends recorded speech to remote servers to enable real-time speech recognition. A warning should pop up asking for permission to use the microphone. We do not retrieve or store any of your information, but we have no control over what Chrome's API does with your voice recordings. We do not recommend using it for sensitive information that does not belong on public servers. Other browsers <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#Browser_compatibility">like Firefox</a> maintain offline speech recognition solutions.</p>
+
+    <p>Third-party networks may occasionally display advertising on our pages. These advertisers may use pixels, cookies, or other targeting techniques to serve ads based on interests. The <a href="//www.networkadvertising.org/">Network Advertising Initiative</a> provides an opt-out tool to prevent the collection and local temporary storage of ad targeting information. Understand that opting out does not prevent or block ads like <a href="//www.google.com/search?q=ad+blockers">ad blockers</a> do. It merely makes them less relevant.</p>
+
+    <p>If flash is enabled, some third-party ads may use Flash cookies to collect and store information (again, locally) for purposes similar to the above.</p>
+
+    <div style="clear:both; margin:auto; font-size:12pt;"><a href="//creativecommons.org/licenses/by-sa/3.0/us/"><img alt="CCBY" class="left" src="//thenerdshow.com/images/ccby88x31.png"></a> Copyright &copy; 2017 Henry Kroll III, <a href="//thenerdshow.com" target="_blank">thenerdshow.com</a> This web page is licensed under a <a href="//creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-ShareAlike 3.0</a> Unported License.</div>
+  </body>
+</html>
