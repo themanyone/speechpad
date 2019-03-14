@@ -46,6 +46,17 @@ Put these files in a folder called "speech" inside CKEditor's "plugins" director
 ```
 /my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech
 ```
+Edit config.js
+
+```
+/my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/views/default/elgg/ckeditor/config.js
+```
+
+Add `speech` plugin to the line that says `extraPlugins`.
+
+```
+extraPlugins: 'autogrow,paste_image,open_save,speech',
+```
 
 ## For any other website.
 
@@ -55,6 +66,18 @@ Put these files in a folder called "speech" inside CKEditor's "plugins" director
 
 ```
 /my-www-root/my-website.com/ckeditor/plugins/speech
+```
+
+Edit config.js
+
+```
+/my-www-root/my-website.com/ckeditor/config.js
+```
+
+Add `speech` plugin to the line that says `extraPlugins`.
+
+```
+extraPlugins: 'speech',
 ```
 
 Thank you for using [CKEditor](https://ckeditor.com/ckeditor-4/) Speech+ Voice Editor Plugin.
