@@ -1,5 +1,5 @@
 /**                                       -*- coding: utf-8 -*-
-* Google Speech API Plugin for CKeditor
+* Google Speech API Plugin for CKeditor 4.5.5
 * February 1, 2017 by Henry Kroll III, www.thenerdshow.com
 * 
 * Adapted from:

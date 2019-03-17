@@ -41,8 +41,9 @@ Our online editor saves work periodically, so you can shut down and continue at 
 
 ## For an [Elgg](https://elgg.org/) installation.
 
-Put the project's files in a folder called "speech" inside CKEditor's "plugins" directory. 
-Update CKEditor version to 4.5.5.
+Put the project's files in a folder called "speech" inside CKEditor's 
+"plugins" directory. If there are problems, try CKEditor version 
+4.5.5.
 
 ```
 /my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech
@@ -61,10 +62,15 @@ extraPlugins: 'autogrow,paste_image,open_save,speech',
 
 ## For any other website.
 
-You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/) already working on your web 
-page. The version this works with is 4.5.5.
+You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/) already 
+working on your web page. This plugin targets version 4.5.5.
 
-Put the project's files in a folder called "speech" inside CKEditor's "plugins" directory.
+CKEditor published a [helpful tutorial for creating plugins](https://docs-old.ckeditor.com/CKEditor_3.x/Tutorials/Timestamp_Plugin).
+Follow it through to make sure the site has a working editor that can 
+take plugins.
+
+Put the project's files in a folder called "speech" inside CKEditor's 
+"plugins" directory.
 
 ```
 /my-www-root/my-website.com/ckeditor/plugins/speech
@@ -82,4 +88,5 @@ Add `speech` plugin to the line that says `extraPlugins`.
 extraPlugins: 'speech',
 ```
 
-Thank you for using [CKEditor](https://ckeditor.com/ckeditor-4/) Speech+ Voice Editor Plugin.
+Thank you for using [CKEditor](https://ckeditor.com/ckeditor-4/) 
+Speech+ Voice Editor Plugin.
