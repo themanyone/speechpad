@@ -41,7 +41,8 @@ Our online editor saves work periodically, so you can shut down and continue at 
 
 ## For an [Elgg](https://elgg.org/) installation.
 
-Put these files in a folder called "speech" inside CKEditor's "plugins" directory.
+Put the project's files in a folder called "speech" inside CKEditor's "plugins" directory. 
+Update CKEditor version to 4.5.5.
 
 ```
 /my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech
@@ -60,9 +61,10 @@ extraPlugins: 'autogrow,paste_image,open_save,speech',
 
 ## For any other website.
 
-You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/) already working on your web page.
+You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/) already working on your web 
+page. The version this works with is 4.5.5.
 
-Put these files in a folder called "speech" inside CKEditor's "plugins" directory.
+Put the project's files in a folder called "speech" inside CKEditor's "plugins" directory.
 
 ```
 /my-www-root/my-website.com/ckeditor/plugins/speech
