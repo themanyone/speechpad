@@ -41,7 +41,7 @@ Our online editor saves work periodically, so you can shut down and continue at 
 
 ## For an [Elgg](https://elgg.org/) installation.
 
-Put the project's files in a folder called "speech" inside CKEditor's 
+Put this project's files in a folder called "speech" inside CKEditor's 
 "plugins" directory. If there are problems, try CKEditor version 
 4.5.5.
 
@@ -62,30 +62,21 @@ extraPlugins: 'autogrow,paste_image,open_save,speech',
 
 ## For any other website.
 
-You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/) already 
-working on your web page. This plugin targets version 4.5.5.
+You must have [CKEditor-4](https://ckeditor.com/ckeditor-4/download/) 
+already working. This plugin targets version 4.11.x.
 
-CKEditor published a [helpful tutorial for creating plugins](https://docs-old.ckeditor.com/CKEditor_3.x/Tutorials/Timestamp_Plugin).
-Follow it through to make sure the site has a working editor that can 
-take plugins.
-
-Put the project's files in a folder called "speech" inside CKEditor's 
+Put this project's files in a folder called "speech" inside CKEditor's 
 "plugins" directory.
 
 ```
 /my-www-root/my-website.com/ckeditor/plugins/speech
 ```
 
-Edit config.js
+CKEditor has extensive documentation and some of it is outdated. See 
+the included `example.html` for a configuration that is known to work. Move it to your website's location.
 
 ```
-/my-www-root/my-website.com/ckeditor/config.js
-```
-
-Add `speech` plugin to the line that says `extraPlugins`.
-
-```
-extraPlugins: 'speech',
+/my-www-root/my-website.com/example.html
 ```
 
 Thank you for using [CKEditor](https://ckeditor.com/ckeditor-4/) 
