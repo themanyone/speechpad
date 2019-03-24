@@ -67,7 +67,8 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       }
       return;
     }
-    var bot = document.querySelector("#cke_1_top");
+    var bot = document.querySelector("#cke_1_bottom");
+    if(!bot) bot = document.querySelector("#cke_1_top");
     var interim_span = document.createElement("span");
     bot.appendChild(interim_span);
     recognizing = true;
