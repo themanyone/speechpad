@@ -212,8 +212,10 @@ function bs(range) {
 function fixRange(range) {
     var rc = range.clone();
     var a = rc.getNextNode();
-    rc.setEnd(a, 0);
-    rc.collapse();
+    if(a){
+        rc.setEnd(a, 0);
+        rc.collapse();
+    }
     return rc;
 }
 

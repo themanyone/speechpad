@@ -41,9 +41,8 @@ Our online editor saves work periodically, so you can shut down and continue at 
 
 ## For an [Elgg](https://elgg.org/) installation.
 
-Put this project's files in a folder called "speech" inside CKEditor's 
-"plugins" directory. If there are problems, try CKEditor version 
-4.5.5.
+Put this project's files in a folder called "speech" inside the [CKEditor-4](https://ckeditor.com/ckeditor-4/download/)  
+"plugins" directory.
 
 ```
 /my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech
