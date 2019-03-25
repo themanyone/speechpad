@@ -9,6 +9,7 @@
 */
 ( function() {
 "use strict";
+var editor1 = CKEDITOR.instances[(Object.keys(CKEDITOR.instances)[0])];
 
 CKEDITOR.plugins.add( 'speech',
 {
