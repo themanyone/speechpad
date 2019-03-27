@@ -24,7 +24,7 @@ editor1.addCommand( 'help',
 		exec : function( editor1 )
         {
             // load content from edit_help.html
-            window.open('.ckeditor/plugins/speech/edit_help.html', '_blank');
+            window.open(CKEDITOR.getUrl("plugins/speech/edit_help.html"), '_blank');
         }
 	});
 
