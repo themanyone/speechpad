@@ -59,9 +59,9 @@ editor1.setKeystroke([
 
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 70 /*F*/, 'removeFormat' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 82 /*R*/, 'right' ],
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 76 /*L*/, 'left' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 69 /*E*/, 'center' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 83 /*S*/, 'source' ],
-        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 76 /*L*/, 'left' ],
         [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 76 /*L*/, 'link' ],
         [ CKEDITOR.CTRL + 77 /*M*/, 'maximize' ],
 
