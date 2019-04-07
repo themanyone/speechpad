@@ -41,11 +41,12 @@ Our online editor saves work periodically, so you can shut down and continue at 
 
 ## For an [Elgg](https://elgg.org/) installation.
 
-Put this project's files in a folder called "speech" inside the [CKEditor-4](https://ckeditor.com/ckeditor-4/download/)  
+Put this project's files in a folder called "speech" inside the 
+[CKEditor-4](https://ckeditor.com/ckeditor-4/download/)  
 "plugins" directory.
 
 ```
-/my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech
+/my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/vendors/ckeditor/plugins/speech/
 ```
 Edit config.js
 
@@ -53,11 +54,40 @@ Edit config.js
 /my-www-root/my-website.com/vendor/elgg/elgg/mod/ckeditor/views/default/elgg/ckeditor/config.js
 ```
 
-Add `speech` plugin to the line that says `extraPlugins`.
+Add `speech` to the line that says `extraPlugins`.
 
 ```
-extraPlugins: 'autogrow,paste_image,open_save,speech',
+extraPlugins: 'autogrow,speech',
 ```
+
+### Optional [CKEditor 
+Addons](https://github.com/hypeJunction/Elgg-ckeditor_addons) plugin 
+for [Elgg](https://elgg.org/).
+
+[CKEditor Addons](https://github.com/hypeJunction/Elgg-ckeditor_addons) 
+permits turning CKEditor menu items on and off and permits reserving 
+some functions for admin users.
+
+We have to modify two more files to make Speech+ and other plugins work 
+with the optional CKEditor Addons plugin. Remove `views.php` if 404 errors show up in the webserver logs complaining about a missing `ckeditor/assets/` directory. Change start.php:
+
+```
+/my-www-root/my-website.com/mod/ckeditor_addons/start.php
+```
+
+Add Speech+ menu items to the 'editing' line:
+
+```
+'editing' => ['Find', 'Replace', 'SelectAll', 'Scayt', 'SpeechHelp', 'Speech'],
+```
+
+Next, modify setup.js.php:
+
+```
+/my-www-root/my-website.com/mod/ckeditor_addons/views/default/components/ckeditor/setup.js.php
+```
+
+Add `speech` to the line that says `extraPlugins`. 
 
 ## For any other website.
 
@@ -71,8 +101,10 @@ Put this project's files in a folder called "speech" inside CKEditor's
 /my-www-root/my-website.com/ckeditor/plugins/speech
 ```
 
-CKEditor has extensive documentation and some of it is outdated. See 
-the included `example.html` for a configuration that is known to work. Move it to your website's location.
+CKEditor has extensive documentation to set up different versions, and 
+some of it is contradictory. See the included `example.html` for a 
+configuration that is known to work. Customize and move it to your 
+webserver directory.
 
 ```
 /my-www-root/my-website.com/example.html

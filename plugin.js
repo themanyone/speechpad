@@ -1,7 +1,8 @@
 /**                                       -*- coding: utf-8 -*-
-* Google Speech API Plugin for CKeditor 4.5.5
-* February 1, 2017 by Henry Kroll III, www.thenerdshow.com
-* 
+* @fileOverview Speech+ Plugin for CKeditor 4
+* @license Copyright (c) 2017-2019 by Henry Kroll III of thenerdshow.com All rights reserved.
+* For a copy of the Apache 2.0 license, see LICENSE.txt
+*
 * Adapted from:
 * Google. (2017). Web Speech API Demonstration. Retrieved February 01, 2017 from view-source:https://www.google.com/intl/en/chrome/demos/speech.html  
 * Agarwal, A. (2016). How to Add Speech Recognition to your Website. [tutorial] Retrieved February 01, 2017 from https://www.labnol.org/software/add-speech-recognition-to-website/19989/
@@ -28,7 +29,7 @@ editor1.addCommand( 'help',
         }
 	});
 
-editor1.ui.addButton( 'Help',
+editor1.ui.addButton( 'SpeechHelp',
 {
 	label: 'Speech Help Alt+F1',
 	command: 'help',
@@ -46,12 +47,26 @@ editor1.addCommand( 'speech',
 
 editor1.ui.addButton( 'Speech',
 {
-	label: 'Speech Dictation Alt+D',
+	label: 'Speech Dictation Alt+S',
 	command: 'speech',
 	icon: 'plugins/speech/mic.gif',
     toolbar: 'editing'
 } );
 
+editor1.setKeystroke([
+        [ CKEDITOR.ALT + 83 /*S*/, 'speech' ],
+        [ CKEDITOR.ALT + 112 /*F1*/, 'help' ],
+
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 70 /*F*/, 'removeFormat' ],
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 82 /*R*/, 'right' ],
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 69 /*E*/, 'center' ],
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 83 /*S*/, 'source' ],
+        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 76 /*L*/, 'left' ],
+        [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 76 /*L*/, 'link' ],
+        [ CKEDITOR.CTRL + 77 /*M*/, 'maximize' ],
+
+        [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
+]);
 /*To use the recognition and synthesis parts of the spec in Firefox when it becomes available, you’ll need to enable the media.webspeech.recognition.enable and media.webspeech.synth.enabled flags in about:config.
 https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
 */
@@ -366,6 +381,3 @@ function insertText(editor1, txt) {
     }
 }
 } )();
-/**
-* end Google Speech API Plugin
-*/
