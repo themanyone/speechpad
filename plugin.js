@@ -89,14 +89,10 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
     bot.appendChild(interim_span);
     recognizing = true;
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-    // var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-    // var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
     if (SpeechRecognition) {
       window.recognition = new SpeechRecognition();
       
-      // Timeout of continuous recognition is too long
-      // so we use non-continuous and restart it.
-      recognition.continuous = false;
+      recognition.continuous = true;
       recognition.interimResults = true;
       // default to browser's lang setting http://stackoverflow.com/questions/18557494/how-to-detect-users-language
       recognition.lang = window.navigator.language
@@ -105,16 +101,8 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       mic.style.background = "salmon";
       
       recognition.onend = function() {
-        if (final_transcript) insertText(editor, final_transcript);
-        final_transcript = "";
-        if (recognizing) {
-            recognition.start();
-            mic.style.background = "salmon";
-        }
-        else {
-            recognition.stop();
-            mic.style.background = "";
-        }
+        // keep it going
+        recognition.start();
       };
       
       recognition.onresult = function(e) {
@@ -127,7 +115,8 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
         }
         for (var i = e.resultIndex; i < e.results.length; ++i) {
           if (e.results[i].isFinal) {
-            final_transcript += linebreak(e.results[i][0].transcript);
+            final_transcript = linebreak(e.results[i][0].transcript);
+            insertText(editor, final_transcript.trim());
           } else {
             interim_transcript += e.results[i][0].transcript;
           }
@@ -242,6 +231,7 @@ function fixRange(range) {
 */
 function insertText(editor1, txt) {
     // undo command (Kroll, February 01, 2017)
+              
     if (txt == "whoops"
      || txt == "what's"
      || txt == "undo"
