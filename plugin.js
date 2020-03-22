@@ -102,8 +102,8 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       
       recognition.onend = function() {
         // keep it going
-        recognition.start();
-        mic.style.background = "salmon";
+        //~ recognition.start();
+        //~ mic.style.background = "salmon";
       };
       
       recognition.onresult = function(e) {
