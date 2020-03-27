@@ -47,7 +47,7 @@ editor1.addCommand( 'speech',
 
 editor1.ui.addButton( 'Speech',
 {
-	label: 'Speech Dictation Alt+S',
+	label: 'Speech Dictation Alt+D',
 	command: 'speech',
 	icon: 'plugins/speech/mic.gif',
     toolbar: 'editing'
@@ -62,10 +62,10 @@ editor1.setKeystroke([
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 76 /*L*/, 'left' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 69 /*E*/, 'center' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 83 /*S*/, 'source' ],
+        [ CKEDITOR.CTRL + 13 /*S*/, 'source' ],
         [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 76 /*L*/, 'link' ],
         [ CKEDITOR.CTRL + 77 /*M*/, 'maximize' ],
 
-        [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
 ]);
 /*To use the recognition and synthesis parts of the spec in Firefox when it becomes available, you’ll need to enable the media.webspeech.recognition.enable and media.webspeech.synth.enabled flags in about:config.
 https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
