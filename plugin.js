@@ -47,7 +47,7 @@ editor1.addCommand( 'speech',
 
 editor1.ui.addButton( 'Speech',
 {
-	label: 'Speech Dictation Alt+D',
+	label: 'Speech Dictation',
 	command: 'speech',
 	icon: 'plugins/speech/mic.gif',
     toolbar: 'editing'
@@ -230,30 +230,49 @@ function fixRange(range) {
 * @param {object} editor instance
 * @param {string} text to insert
 */
-function insertText(editor1, txt) {
-    // undo command (Kroll, February 01, 2017)
-              
+function insertText(editor1, txt) {    
+    var selection = editor1.getSelection();
+    var range = selection.getRanges()[0];
+    
+    //voice editing commands
     if (txt == "whoops"
      || txt == "what's"
      || txt == "undo"
     ) return editor1.undoManager.undo();
     
-    if (txt == "select all") {
-        // from epokk. (February 03, 2017). How to select the content of CKEditor ? [forum post] http://ckeditor.com/forums/CKEditor-3.x/SOLVED-How-select-content-CKEditor
-        editor1.focus();
-        return editor1.document.$.execCommand('SelectAll', false, null);
-    }
-    
-    if (txt == "maximize") {
-        return editor1.execCommand("maximize");
-    }
-    
-    if (txt == "file save") {
-        return fileSave(editor1);
+    if (txt == "select all")  return editor1.document.$.execCommand('SelectAll');
+    if (txt == "maximize")    return editor1.execCommand("maximize");
+    if (txt == "file save")   return fileSave(editor1);
+    if (txt == "backspace" )  return bs(range);    
+    if (txt == "delete that") return range.deleteContents();
+    if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
+        var findString = txt.slice(txt.indexOf(' ') + 1);
+        var ele = editor1.document.getBody();
+        searchRecursive(ele);
+        function searchRecursive(ele){
+            var children = ele.getChildren();
+            var len = children.$.length;
+            for (var i = 0; i < len; i++){
+                var element = children.getItem(i);
+                if (!element.getText) continue;
+                if (element.getChildren) {
+                    searchRecursive(element); continue;
+                }
+                var startIndex = element.getText().indexOf(findString);
+                if (startIndex != -1) {
+                    range.setStart(element, startIndex);
+                    range.setEnd(element, startIndex + findString.length);
+                    selection.selectRanges([range]);
+                    return;
+                }
+            }
+        }
+        return;
     }
     
     // fix missing punctuation in dictation AI (Kroll, February 03, 2017)
     txt = txt.replace(/HTTP colon slash slash\s?/i, "http://");
+    txt = txt.replace(/HTTPS colon slash slash\s?/i, "https://");
     txt = txt.replace(/make a link to (.*\.\w+)/i, 
         function(match, $1){ return " <a href=\"http://" +$1.replace(/\s/g, "")});
     txt = txt.replace(/\s?with link text\s?(.*)/i,
@@ -288,8 +307,6 @@ function insertText(editor1, txt) {
     txt = txt.replace(/\s?trademark symbol\s?/gi, "&trade;");
 
     // from Browse Tutorials. (June, 2015). Get Cursor Position in CKEditor. Retrieved February 01, 2017 from https://browse-tutorials.com/snippet/get-cursor-position-ckeditor
-    var selection = editor1.getSelection();
-    var range = selection.getRanges()[0];
     // Capitalization / punctuation logic is for right-to-left
     // languages, so we prepared an if statement to check this.
     // March 06, 2017
@@ -371,4 +388,4 @@ function insertText(editor1, txt) {
         if (p && p.normalize) p.normalize();
     }
 }
-} )();
+})();
