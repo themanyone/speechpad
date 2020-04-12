@@ -247,25 +247,23 @@ function insertText(editor1, txt) {
     if (txt == "delete that") return range.deleteContents();
     if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
-        var ele = editor1.document.getBody();
-        searchRecursive(ele);
-        function searchRecursive(ele){
-            var children = ele.getChildren();
-            var len = children.$.length;
-            for (var i = 0; i < len; i++){
-                var element = children.getItem(i);
-                if (!element.getText) continue;
-                if (element.getChildren) {
-                    searchRecursive(element); continue;
-                }
-                var startIndex = element.getText().toLowerCase().indexOf(findString);
+        window.element = selection.getStartElement();
+        //wrap around search
+        var searchStart = element;
+        while (element = element.getNextSourceNode()
+            || editor1.document.getBody().getFirst()) {
+            if (element == searchStart) return; //not found
+            //search only text nodes
+            if (!element.$.nodeType == 3) continue;
+            var startIndex = element.getText().toLowerCase().indexOf(findString);
+            try {
                 if (startIndex != -1) {
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
                     selection.selectRanges([range]);
                     return;
                 }
-            }
+            } catch { continue; }
         }
         return;
     }
