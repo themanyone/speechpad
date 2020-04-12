@@ -246,7 +246,7 @@ function insertText(editor1, txt) {
     if (txt == "backspace" )  return bs(range);    
     if (txt == "delete that") return range.deleteContents();
     if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
-        var findString = txt.slice(txt.indexOf(' ') + 1);
+        var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var ele = editor1.document.getBody();
         searchRecursive(ele);
         function searchRecursive(ele){
@@ -258,7 +258,7 @@ function insertText(editor1, txt) {
                 if (element.getChildren) {
                     searchRecursive(element); continue;
                 }
-                var startIndex = element.getText().indexOf(findString);
+                var startIndex = element.getText().toLowerCase().indexOf(findString);
                 if (startIndex != -1) {
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
