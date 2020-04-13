@@ -246,7 +246,21 @@ function insertText(editor1, txt) {
     if (txt == "backspace" )  return bs(range);    
     if (txt == "delete that") return range.deleteContents();
     if (txt == "mute")        return editor1.execCommand("speech");
-    if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
+    if (txt == "go to the end") {
+      var body = editor1.document.getBody();
+      var element = body.getChild(body.getChildCount() - 1);
+      element.scrollIntoView();
+      while ((element = element.getNextSourceNode())) {
+        if (!element.$.nodeType == 3) continue;
+        try {
+          range.setStart(element, element.$.length);
+          range.setEnd(element, element.$.length);
+          selection.selectRanges([range]);
+        } catch { }
+      }
+      return;
+    }
+    if (txt.search(/select /i) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var element = selection.getStartElement();
         //wrap around search
