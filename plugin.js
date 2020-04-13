@@ -235,6 +235,15 @@ function insertText(editor1, txt) {
     var range = selection.getRanges()[0];
     var txl = txt.toLowerCase();
   
+    function gotoLine(element, start = false) {
+      element.scrollIntoView();
+      element = start? element.getChild(0):
+                       element.getChild(element.getChildCount() - 1);
+      range.setStart(element, start? 0 : element.$.length);
+      range.setEnd(  element, start? 0 : element.$.length);
+      selection.selectRanges([range]);
+    }
+  
     //voice editing commands
     if (txl == "whoops"
      || txl == "what's"
@@ -247,18 +256,13 @@ function insertText(editor1, txt) {
     if (txl == "backspace" )  return bs(range);    
     if (txl == "delete that") return range.deleteContents();
     if (txl == "mute")        return editor1.execCommand("speech");
-    if (txl == "go to the end") {
+    if (txl == "end of line") return gotoLine(selection.getStartElement());
+    if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
+    if (txl == "go to the end" ||
+        txl == "end of document") {
       var body = editor1.document.getBody();
       var element = body.getChild(body.getChildCount() - 1);
-      element.scrollIntoView();
-      while ((element = element.getNextSourceNode())) {
-        if (!element.$.nodeType == 3) continue;
-        try {
-          range.setStart(element, element.$.length);
-          range.setEnd(element, element.$.length);
-          selection.selectRanges([range]);
-        } catch { }
-      }
+      gotoLine(element);
       return;
     }
     if (txl.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
