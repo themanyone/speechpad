@@ -247,9 +247,11 @@ function insertText(editor1, txt) {
     if (txt == "delete that") return range.deleteContents();
     if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
-        window.element = selection.getStartElement();
+        var element = selection.getStartElement();
         //wrap around search
         var searchStart = element;
+        //find next if already selected
+        if (selection.getSelectedText() == findString) element = element.getNext();
         while (element = element.getNextSourceNode()
             || editor1.document.getBody().getFirst()) {
             if (element == searchStart) return; //not found
@@ -258,9 +260,11 @@ function insertText(editor1, txt) {
             var startIndex = element.getText().toLowerCase().indexOf(findString);
             try {
                 if (startIndex != -1) {
+                    console.log("found something...");
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
                     selection.selectRanges([range]);
+                    selection.getStartElement().scrollIntoView();
                     return;
                 }
             } catch { continue; }
