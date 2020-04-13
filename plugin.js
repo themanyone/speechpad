@@ -240,11 +240,12 @@ function insertText(editor1, txt) {
      || txt == "undo"
     ) return editor1.undoManager.undo();
     
-    if (txt == "select all")  return editor1.document.$.execCommand('SelectAll');
+    if (txt == "select all")  return editor1.execCommand('SelectAll');
     if (txt == "maximize")    return editor1.execCommand("maximize");
     if (txt == "file save")   return fileSave(editor1);
     if (txt == "backspace" )  return bs(range);    
     if (txt == "delete that") return range.deleteContents();
+    if (txt == "mute")        return editor1.execCommand("speech");
     if (txt.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var element = selection.getStartElement();
@@ -264,7 +265,7 @@ function insertText(editor1, txt) {
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
                     selection.selectRanges([range]);
-                    selection.getStartElement().scrollIntoView();
+                    element.getParent().scrollIntoView();
                     return;
                 }
             } catch { continue; }
