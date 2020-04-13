@@ -251,7 +251,8 @@ function insertText(editor1, txt) {
         //wrap around search
         var searchStart = element;
         //find next if already selected
-        if (selection.getSelectedText() == findString) element = element.getNext();
+        if (selection.getSelectedText().toLowerCase() == findString)
+            element = element.getNext();
         while (element = element.getNextSourceNode()
             || editor1.document.getBody().getFirst()) {
             if (element == searchStart) return; //not found
@@ -268,7 +269,6 @@ function insertText(editor1, txt) {
                 }
             } catch { continue; }
         }
-        return;
     }
     
     // fix missing punctuation in dictation AI (Kroll, February 03, 2017)
