@@ -233,20 +233,21 @@ function fixRange(range) {
 function insertText(editor1, txt) {    
     var selection = editor1.getSelection();
     var range = selection.getRanges()[0];
-    
+    var txl = txt.toLowerCase();
+  
     //voice editing commands
-    if (txt == "whoops"
-     || txt == "what's"
-     || txt == "undo"
+    if (txl == "whoops"
+     || txl == "what's"
+     || txl == "undo"
     ) return editor1.undoManager.undo();
     
-    if (txt == "select all")  return editor1.execCommand('SelectAll');
-    if (txt == "maximize")    return editor1.execCommand("maximize");
-    if (txt == "file save")   return fileSave(editor1);
-    if (txt == "backspace" )  return bs(range);    
-    if (txt == "delete that") return range.deleteContents();
-    if (txt == "mute")        return editor1.execCommand("speech");
-    if (txt == "go to the end") {
+    if (txl == "select all")  return editor1.execCommand('SelectAll');
+    if (txl == "maximize")    return editor1.execCommand("maximize");
+    if (txl == "file save")   return fileSave(editor1);
+    if (txl == "backspace" )  return bs(range);    
+    if (txl == "delete that") return range.deleteContents();
+    if (txl == "mute")        return editor1.execCommand("speech");
+    if (txl == "go to the end") {
       var body = editor1.document.getBody();
       var element = body.getChild(body.getChildCount() - 1);
       element.scrollIntoView();
@@ -260,7 +261,7 @@ function insertText(editor1, txt) {
       }
       return;
     }
-    if (txt.search(/select /i) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
+    if (txl.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var element = selection.getStartElement();
         //wrap around search
