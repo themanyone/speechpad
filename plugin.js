@@ -258,6 +258,7 @@ function insertText(editor1, txt) {
     if (txl == "mute")        return editor1.execCommand("speech");
     if (txl == "end of line") return gotoLine(selection.getStartElement());
     if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
+    if (txl == "beginning of document") return gotoLine(editor1.document.getBody().getChild(0), true);
     if (txl == "go to the end" ||
         txl == "end of document") {
       var body = editor1.document.getBody();
