@@ -260,7 +260,6 @@ function insertText(editor1, txt) {
             var startIndex = element.getText().toLowerCase().indexOf(findString);
             try {
                 if (startIndex != -1) {
-                    console.log("found something...");
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
                     selection.selectRanges([range]);
