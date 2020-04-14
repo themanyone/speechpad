@@ -250,7 +250,7 @@ function insertText(editor1, txt) {
      || txl == "undo"
     ) return editor1.undoManager.undo();
     
-    if (txl == "select all")  return editor1.execCommand('SelectAll');
+    if (txl == "select all")  return editor1.document.$.execCommand('SelectAll');
     if (txl == "maximize")    return editor1.execCommand("maximize");
     if (txl == "file save")   return fileSave(editor1);
     if (txl == "backspace" )  return bs(range);    
@@ -258,14 +258,9 @@ function insertText(editor1, txt) {
     if (txl == "mute")        return editor1.execCommand("speech");
     if (txl == "end of line") return gotoLine(selection.getStartElement());
     if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
-    if (txl == "beginning of document") return gotoLine(editor1.document.getBody().getChild(0), true);
+    if (txl == "beginning of document") return gotoLine(selection.root.getFirst(), true);
     if (txl == "go to the end" ||
-        txl == "end of document") {
-      var body = editor1.document.getBody();
-      var element = body.getChild(body.getChildCount() - 1);
-      gotoLine(element);
-      return;
-    }
+        txl == "end of document") return gotoLine(selection.root.getLast());
     if (txl.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var element = selection.getStartElement();
@@ -280,15 +275,15 @@ function insertText(editor1, txt) {
             //search only text nodes
             if (!element.$.nodeType == 3) continue;
             var startIndex = element.getText().toLowerCase().indexOf(findString);
-            try {
-                if (startIndex != -1) {
+            if (startIndex != -1) {
+              try {
                     range.setStart(element, startIndex);
                     range.setEnd(element, startIndex + findString.length);
                     selection.selectRanges([range]);
                     element.getParent().scrollIntoView();
                     return;
-                }
-            } catch { continue; }
+                } catch { }
+            }
         }
     }
     
