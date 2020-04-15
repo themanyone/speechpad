@@ -239,7 +239,7 @@ function insertText(editor1, txt) {
     
     if (txl == "capitalize that")   txt = capitalize(selection.getSelectedText());
     if (txl == "uncapitalize that") txt = capitalize(selection.getSelectedText(), false);
-    if (txl == "title case") txt = titleCaps(selection.getSelectedText());
+    if (txl == "title case that") txt = titleCaps(selection.getSelectedText());
     if (txl == "mute")        return editor1.execCommand("speech");
     if (txl == "end of line") return gotoLine(selection.getStartElement());
     if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);

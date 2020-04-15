@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CKEditor Speech+ Voice Editor Plugin</title>
+    <title>Best Online Dictation</title>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta property="og:title" content="Best Online Dictation">
@@ -10,10 +10,70 @@
     <meta property="og:image" content="http://thenerdshow.com/.ckeditor/plugins/speech/speech_plugin.jpg">
     <meta property="og:image" content="http://thenerdshow.com/images/leap-motion-3x.jpg">
     <meta property="og:url" content="http://thenerdshow.com/.ckeditor/edit_help.html">
-    <link rel="stylesheet" type="text/css" href="/.ckeditor/adbar.css?v=1.2">
     <style>
 body {
     font-family: arial,helvetica,sans-serif;
+}
+table {
+    display:inline-block;
+    margin-right:20px;
+    vertical-align: top;
+}
+table.blueTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.blueTable tbody td {
+  font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+  background: #D5E4ED;
+}
+table.blueTable thead {
+  background: #7BA1A8;
+  background: -moz-linear-gradient(top, #9cb8be 0%, #88aab0 66%, #7BA1A8 100%);
+  background: -webkit-linear-gradient(top, #9cb8be 0%, #88aab0 66%, #7BA1A8 100%);
+  background: linear-gradient(to bottom, #9cb8be 0%, #88aab0 66%, #7BA1A8 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}
+table.blueTable tfoot .links {
+  text-align: right;
+}
+table.blueTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
 }
 th {
     text-align: left;
@@ -25,193 +85,150 @@ th {
     </style>
 </head>
 <body>
-    <h1><a href="/edit.html">CKEditor Speech+ Voice Editor Plugin</a></h1>
-    <p>A full-featured text / HTML editor in the browser now with speech recognition. Even better, Speech+ has voice-operated editing commands for nearly hands-free editing. CKEditor with Speech+ is perfect for mobile, library, and school computers that don&#39;t allow software to be installed. We use it all the time.</p>
+    <h1><a href="/edit.html">SpeechPad Online Dictation</a></h1>
+    <a href="https://thenerdshow.com/edit.html"><img style="float:right; margin-left:15px; border:1px solid black" alt="Dictation Screenshot" src="speech_plugin.jpg"></a>
+    
+    <p>SpeechPad is a dictation plugin for CKEditor, a <b>full-featured web page editor</b>, <b>word processor</b>, and <b>notepad</b> on a web page. SpeechPad includes voice-operated editing commands for hands-free editing. CKEditor with SpeechPad is perfect for mobile, library, and school computers that don&#39;t allow software to be installed. We use it all the time.</p>
+    
     <p><a href="https://themanyone.github.io/speechplus/">Now available on GitHub.</a></p>
     
     <h2>Using Voice Commands</h2>
-    <p>Press the maximize <img alt="" src="maximize.gif"> <kbd>Alt</kbd>+<kbd>M</kbd> button in the toolbar for an ad-free experience.</p>
     <ul>
-      <li>Or click the microphone or press <kbd>Alt</kbd>+<kbd>D</kbd> and say "maximize."</li>
       <li>Highlight text with the mouse and start talking to change it.</li>
       <li>Say "whoops", "undo", or "what&#39;s" to undo mistakes.</li>
+      <li>Say "period" to end a sentence and "new paragraph" to end a line.</li>
       <li>Press <kbd>Ctrl</kbd>+<kbd>A</kbd> or say "select all" to select the page and press <kbd>Ctrl</kbd>+<kbd>C</kbd> to copy.</li>
       <li>To post to HTML forums, click the Source button and copy and paste from there.</li>
       <li>Say "file open" or press <kbd>Ctrl</kbd>+<kbd>O</kbd> to open a local file for editing.</li>
       <li>Say "file save" or press <kbd>Ctrl</kbd>+<kbd>S</kbd> to save the file locally to disk.* (<em><a href="#alert">See warnings</a>)</em></li></ul>
-    <p><a href="/edit.html"><img alt="Dictation Screenshot" src="speech_plugin.jpg"></a></p>
+    <p></p>
     <p><a href="https://thenerdshow.com/edit.html">Try it.</a></p>
     
 
-    <h2>More Spoken Commands</h2>
-    <table></table>
-    <table>
+    <h2>Voice Commands</h2>
+    <table class="blueTable">
       <thead>
-        <tr>
-          <th scope="col">Spoken Command</th>
-          <th scope="col">Action</th></tr></thead>
+        </tr><th scope="col">Say this</th>
+          <th scope="col">To do this</th></tr></thead>
       <tbody>
-        <tr>
-          <td>make a link to</td>
-          <td>&lt;a href="</td></tr>
-        <tr>
-          <td>with link text</td>
-          <td>"&gt;...&lt;/a&gt;</td></tr>
-        <tr>
-          <td>whoops (or undo)</td>
-          <td>undo recent edits</td></tr>
-        <tr>
-          <td>maximize</td>
-          <td>expand editor</td></tr>
-        <tr>
-          <td>select all</td>
-          <td>select all text</td></tr>
-        <tr>
-          <td>select [spoken text]</td>
-          <td>find and select spoken text</td></tr>
-        <tr>
-          <td>delete that</td>
-          <td>delete selection</td></tr>
-        <tr>
-          <td>embolden that</td>
-          <td>embolden selection</td></tr>
-        <tr>
-          <td>italicize that</td>
-          <td>italicize selection</td></tr>
-        <tr>
-          <td>strike that</td>
-          <td>strike selection</td></tr>
-        <tr>
-          <td>underline that</td>
-          <td>underline selection</td></tr>
-        <tr>
-          <td>superscript that</td>
-          <td>superscript selection</td></tr>
-        <tr>
-          <td>subscript that</td>
-          <td>subscript selection</td></tr>
-        <tr>
-          <td>blockquote that</td>
-          <td>blockquote selection</td></tr>
-        <tr>
-          <td>bullet that</td>
-          <td>bullet selection</td></tr>
-        <tr>
-          <td>number that</td>
-          <td>number selection</td></tr>
-        <tr>
-          <td>heading one</td>
-          <td>make selection a heading</td></tr>
-        <tr>
-          <td>heading two</td>
-          <td>make selection a heading</td></tr>
-        <tr>
-          <td>heading three</td>
-          <td>make selection a heading</td></tr>
-        <tr>
-          <td>left justify that</td>
-          <td>justify selection</td></tr>
-        <tr>
-          <td>center that</td>
-          <td>center selection</td></tr>
-        <tr>
-          <td>indent that</td>
-          <td>indent selection</td></tr>
-        <tr>
-          <td>hanging indent that</td>
-          <td>hanging indent selection</td></tr>
-        <tr>
-          <td>color that red</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>color that green</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>color that orange</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>color that purple</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>color that green</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>color that blue</td>
-          <td>color selection</td></tr>
-        <tr>
-          <td>insert synbol</td>
-          <td>bring up list of symbols to insert</td></tr>
-        <tr>
-          <td>insert horizontal line</td>
-          <td>add a horizontal line at selection</td></tr>
-        
-        
-        <tr>
-          <td>capitalize that</td>
-          <td>capitalize selection</td></tr>
-        <tr>
-          <td>uncapitalize that</td>
-          <td>uncapitalize selection</td></tr>
-        <tr>
-          <td>title case</td>
-          <td>Title Case Selected Words</td></tr>
-        <tr>
-          <td>backspace</td>
-          <td>delete a character to the left of selection</td></tr>
-        <tr>
-          <td>beginning of line</td>
-          <td>move cursor to the beginning of the line</td></tr>
-        <tr>
-          <td>beginning of document</td>
-          <td>move cursor to the beginning of the document</td></tr>
-        <tr>
-          <td>end of line</td>
-          <td>move cursor to the end of the line</td></tr>
-        <tr>
-          <td>end of document</td>
-          <td>move cursor to the end of the document</td></tr>
-        <tr>
-          <td>mute</td>
-          <td>turn off microphone</td></tr>
+             <td>new paragraph</td>           <td>create a new paragraph at cursor</td></tr>
+        </tr><td>make a link to</td>          <td>&lt;a href="</td></tr>
+        </tr><td>with link text</td>          <td>"&gt;...&lt;/a&gt;</td></tr>
+        </tr><td>whoops (or undo)</td>        <td>undo recent edits</td></tr>
+        </tr><td>maximize</td>                <td>expand editor</td></tr>
+        </tr><td>select all</td>              <td>select all text</td></tr>
+        </tr><td>select [spoken text]</td>    <td>find and select spoken text</td></tr>
+        </tr><td>delete that</td>             <td>delete selection</td></tr>
+        </tr><td>embolden that</td>           <td>embolden selection</td></tr>
+        </tr><td>italicize that</td>          <td>italicize selection</td></tr>
+        </tr><td>strike that</td>             <td>strike selection</td></tr>
+        </tr><td>underline that</td>          <td>underline selection</td></tr>
+        </tr><td>superscript that</td>        <td>superscript selection</td></tr>
+        </tr><td>subscript that</td>          <td>subscript selection</td></tr>
+        </tr><td>blockquote that</td>         <td>blockquote selection</td></tr>
+        </tr><td>bullet that</td>             <td>bullet selection</td></tr>
+        </tr><td>number that</td>             <td>number selection</td></tr>
+        </tr><td>heading one</td>             <td>make selection a heading</td></tr>
+        </tr><td>heading two</td>             <td>make selection a heading</td></tr>
+        </tr><td>heading three</td>           <td>make selection a heading</td></tr>
+        </tr><td>left justify that</td>       <td>justify selection</td></tr>
           
-        </tbody></table>
+    </tbody></table>
+          
+    <table class="blueTable">
+      <thead>
+        <th scope="col">Say this</th> <th scope="col">To do this</th></tr></thead>
+      <tbody>
+        <tr><td>center that</td>             <td>center selection</td></tr>
+        <tr><td>indent that</td>             <td>indent selection</td></tr>
+        <tr><td>hanging indent that</td>     <td>hanging indent selection</td></tr>
+        <tr><td>color that red</td>          <td>color selection</td></tr>
+        <tr><td>color that green</td>        <td>color selection</td></tr>
+        <tr><td>color that orange</td>       <td>color selection</td></tr>
+        <tr><td>color that purple</td>       <td>color selection</td></tr>
+        <tr><td>color that green</td>        <td>color selection</td></tr>
+        <tr><td>color that blue</td>         <td>color selection</td></tr>
+        <tr><td>insert synbol</td>           <td>bring up list of symbols to insert</td></tr>
+        <tr><td>insert horizontal line</td>  <td>add a horizontal line at selection</td></tr>
+        <tr><td>capitalize that</td>         <td>capitalize selection</td></tr>
+        <tr><td>uncapitalize that</td>       <td>uncapitalize selection</td></tr>
+        <tr><td>title case that</td>         <td>Title Case Selected Words</td></tr>
+        <tr><td>backspace</td>               <td>delete a character to the left of selection</td></tr>
+        <tr><td>beginning of line</td>       <td>move cursor to the beginning of the line</td></tr>
+        <tr><td>beginning of document</td>   <td>move cursor to the beginning of the document</td></tr>
+        <tr><td>end of line</td>             <td>move cursor to the end of the line</td></tr>
+        <tr><td>end of document</td>         <td>move cursor to the end of the document</td></tr>
+        <tr><td>mute</td>                    <td>turn off microphone</td></tr>
+          
+    </tbody></table>
+    
+    <h2>Symbols</h2>
+    <table class="blueTable">
+      <thead>
+        <th scope="col">Say this</th> <th scope="col">To type this</th></tr></thead>
+      <tbody>
+      <tr><td>period</td>           <td>.</td></tr>
+      <tr><td>comma</td>           <td>,</td></tr>
+      <tr><td>exclamation point</td>           <td>!</td></tr>
+      <tr><td>question mark</td>           <td>?</td></tr>
+      <tr><td>colon</td>           <td>:</td></tr>
+      <tr><td>semicolon</td>           <td>;</td></tr>
+      <tr><td>HTTP colon slash slash</td>           <td>http://</td></tr>
+      <tr><td>HTTPS colon slash slash</td>           <td>https://</td></tr>
+      <tr><td>apostrophe</td>           <td>&#39;</td></tr>
+      <tr><td>tab key</td>           <td>\t</td></tr>
+      <tr><td>ellipses</td>           <td>...</td></tr>
+      <tr><td>ampersand</td>           <td>&amp;</td></tr>
+      <tr><td>asterisk</td>           <td>*</td></tr>
+      <tr><td>at sign</td>           <td>@</td></tr>
+      <tr><td>at symbol</td>           <td>@</td></tr>
+      <tr><td>backslash</td>           <td>\</td></tr>
+      <tr><td>open bracket</td>           <td>[</td></tr>
+      <tr><td>close bracket</td>           <td>]</td></tr>
+    </tbody></table>
+      
+    
+    <table class="blueTable">
+      <thead>
+        <th scope="col">Say this</th> <th scope="col">To type this</th></tr></thead>
+      <tbody>
+      <tr><td>open parentheses</td>       <td>(</td></tr>
+      <tr><td>close parentheses</td>      <td>)</td></tr>
+      <tr><td>less.than symbol</td>       <td><</td></tr>
+      <tr><td>greater.than symbol</td>    <td>></td></tr>
+      <tr><td>open quote</td>             <td>"</td></tr>
+      <tr><td>close quote</td>            <td>"</td></tr>
+      <tr><td>open curly quote</td>       <td>&#8220;</td></tr>
+      <tr><td>close curly quote</td>      <td>&#8221;</td></tr>
+      <tr><td>long dash</td>              <td>&#8212;</td></tr>
+      <tr><td>short dash</td>             <td>-</td></tr>
+      <tr><td>degrees Farenheit</td>      <td>&deg;F</td></tr>
+      <tr><td>degrees Celcius</td>        <td>&deg;C</td></tr>
+      <tr><td>Hashtag stuff</td>          <td>#stuff</td></tr>
+      <tr><td>Five dollars</td>           <td>$5</td></tr>
+      <tr><td>Copyright symbol</td>       <td>&copy;</td></tr>
+      <tr><td>Registered symbol</td>      <td>&reg;</td></tr>
+      <tr><td>trademark symbol</td>       <td>&trade;</td></tr>
+      
+    </tbody></table>
     
     <h2>Hotkeys</h2>
-    <table>
+    <table class="blueTable">
       <thead>
-        <tr>
-          <th>Command</th>
-          <th>Hotkey</th></tr></thead>
+        <th scope="col">To do this</th> <th scope="col">Press keys</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Start dictation:</td>
-          <td><kbd>Alt</kbd>+<kbd>D</kbd></td></tr>
-        <tr>
-          <td>Dictation help:</td>
-          <td><kbd>Alt</kbd>+<kbd>F1</kbd></td></tr>
-        <tr>
-          <td>Remove format:</td>
-          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td></tr>
-        <tr>
-          <td>Right justify:</td>
-          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></td></tr>
-        <tr>
-          <td>Left justify:</td>
-          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
-        <tr>
-          <td>Center:</td>
-          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></td></tr>
-        <tr>
-          <td>Source:</td>
-          <td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td></tr>
-        <tr>
-          <td>Create link:</td>
-          <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
-        <tr>
-          <td>Maximize:</td>
-          <td><kbd>Ctrl</kbd>+<kbd>M</kbd></td>
-        </tr>
+        <tr><td>Start dictation:</td>        <td><kbd>Alt</kbd>+<kbd>D</kbd></td></tr>
+        <tr><td>Dictation help:</td>         <td><kbd>Alt</kbd>+<kbd>F1</kbd></td></tr>
+        <tr><td>Remove format:</td>          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td></tr>
+        <tr><td>Right justify:</td>          <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></td></tr>
+        <tr><td>Left justify:</td>           <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
+        <tr><td>Center:</td>                 <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></td></tr>
+        <tr><td>Source:</td>                 <td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td></tr>
+        <tr><td>Create link:</td>            <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
+        <tr><td>Maximize:</td>               <td><kbd>Ctrl</kbd>+<kbd>M</kbd></td></tr>
+        
       </tbody></table>
+      
     <h2>Features</h2>
     <p>There&#39;s no question online voice dictation can speed up productivity. Of all the FREE voice dictation apps we tested, <a href="//play.google.com/store/apps/details?id=com.khymaera.android.listnotefree">ListNote</a> and the <a href="https://play.google.com/store/apps/details?id=com.wellsrc.speechkeys&amp;hl=en">Speechkeys</a> voice typing keyboard (links to the Android play store) stood out as some of the best, but they all left something to be desired. Using a PC is better for posting complex responses to the forums with formulas and references, but we wanted a "zero installation" web page editing app for use on locked tablets and library computers that restrict downloads of new software. Now we can have a fully-functional text / HTML editing notepad with voice dictation in a web page.</p>
     <p>Having already authored <a href="/freespeech.html">FreeSpeech</a>, a real-time dictation application for Linux desktop PCs, it was time to bring that experience to the web. Like many others, we chose to use The <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">Web Speech API</a>. The API is not designed to compete with dictation applications like DragonNaturally(TM) Speaking, and many applications based on it attest to this fact; however, when we combined it with <a href="//ckeditor.com/">CKEditor</a>&#39;s powerful HTML editor and added the following features, we made it quite usable. The hands-free voice commands are a big improvement.</p>
@@ -228,43 +245,7 @@ th {
     <p><a id="alert" name="alert"></a>*Note: <em>CKEditor is a friendly WYSIWYG editor, not a true source code editor. It automatically reformats the source in ways that advanced users may not prefer.</em></p>
         
         
-    <h2>Spoken Symbols</h2>
-    <ul>
-      <li>period = .</li>
-      <li>comma = ,</li>
-      <li>exclamation point = !</li>
-      <li>question mark = ?</li>
-      <li>colon = :</li>
-      <li>semicolon = ;</li>
-      <li>HTTP colon slash slash = http://</li>
-      <li>HTTPS colon slash slash = https://</li>
-      <li>apostrophe = &#39;</li>
-      <li>tab key = \t</li>
-      <li>ellipses = ...</li>
-      <li>ampersand = &amp;</li>
-      <li>asterisk = *</li>
-      <li>at sign = @</li>
-      <li>at symbol = @</li>
-      <li>backslash = \</li>
-      <li>open bracket = [</li>
-      <li>close bracket = ]</li>
-      <li>open parentheses = (</li>
-      <li>close parentheses = )</li>
-      <li>less.than symbol = <</li>
-      <li>greater.than symbol = ></li>
-      <li>open quote = "</li>
-      <li>close quote = "</li>
-      <li>open curly quote = &#8220;</li>
-      <li>close curly quote = &#8221;</li>
-      <li>long dash = &#8212;</li>
-      <li>short dash = -</li>
-      <li>degrees Farenheit, &deg;F</li>
-      <li>degrees Celcius, &deg;C</li>
-      <li>Hashtag stuff = #stuff</li>
-      <li>Five dollars = $5</li>
-      <li>Copyright symbol = &copy;</li>
-      <li>Registered symbol = &reg;</li>
-      <li>trademark symbol = &trade;</li></ul>
+      
     <h2>Support and Development</h2>
     <p><b>Copying.</b> <a href="//ckeditor.com/">CKEditor</a> and our accompanying speech plugin runs in a web page. As such, web pages may be saved, modified, and re-used. It would be a simple matter to obtain <a href="//ckeditor.com/">CKEditor</a> and serve it from a web server along with a <a href="//www.blogsdna.com/35/top-6-freeware-website-mirroring-tools-software.htm">mirrored</a> copy of our speech plug-in. In fact, it would be nearly impossible to prevent that from happening.</p>
     <p><em>As of this writing, the HTML5 standard <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">Web Speech API</a> employed by this editor requires at least Firefox 49, Chrome 33, or Edge, but <a href="//developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#Browser_compatibility">support for other browsers may become available</a> as it is in development.</em> If Chrome does not remember the permissions of the microphone, try going to the <a href="https://thenerdshow.com/edit.html">secure site</a>. If speech recognition does not work, it may be used as a regular notepad text editor. The editor works even while offline, but browser security may prevent JavaScript from running from a locally-saved copy. <a href="//ckeditor.com/">CKEditor</a> may be served by a web server such as a local intranet if it is to be adapted strictly for offline use, or behind a firewall, such as a classroom environment. In addition, Chrome-based browsers and apps would need to communicate with Google servers (or a locally-hosted facsimile) to decode the speech information. Offline support for the Web Speech API for Chrome or fall over to the operating system&#39;s default speech recognition engine is rumored to be in development, however. Try updating.</p>
