@@ -145,13 +145,13 @@ function linebreak(s) {
 */
 function getLR(range) { 
     // get text to left of cursor
-  var r, l;
-  if (range.startContainer.$.nodeType == 1) {
-    var lr = range.startContainer.getChild(range.startOffset - 1);
+  var r, l, rs = range.startContainer;
+  if (rs.$.nodeType == 1) {
+    var lr = rs.getChild(range.startOffset - 1);
     l = lr? lr.getText() : "", r = "";
   } else {
-    r = range.startContainer.getText().slice(range.endOffset);
-    l = range.startContainer.getText().slice(0, range.startOffset);
+    r = rs.getText().slice(range.endOffset);
+    l = rs.getText().slice(0, range.startOffset);
   }
   return [l,r];
 }
@@ -213,13 +213,13 @@ function insertText(editor1, txt) {
         var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
         var element = selection.getStartElement();
         //wrap around search
-        var searchStart = element;
+        var searchStart = element, count = 10000;
         //find next if already selected
         if (selection.getSelectedText().toLowerCase() == findString)
             element = element.getNext();
         while (element = element.getNextSourceNode()
             || editor1.document.getBody().getFirst()) {
-            if (element == searchStart) return; //not found
+            if (!(count -= 1) || element == searchStart) return; //not found
             //search only text nodes
             if (!element.$.nodeType == 3) continue;
             var startIndex = element.getText().toLowerCase().indexOf(findString);
@@ -283,9 +283,9 @@ function insertText(editor1, txt) {
           return m? m[0].length - 1 : -1;
         }
         function capitalize(s, cap = true) {
-          return s.replace(/\w/, function(m) { 
+          return s.match(/^\s?\w/)? s.replace(/\w/, function(m) { 
             return cap? m.toUpperCase() : m.toLowerCase();
-          });
+          }): s;
         }
         // if inserting a punctuated sentence in the middle of another
         // cap next fragment
@@ -317,13 +317,18 @@ function insertText(editor1, txt) {
         if (txt.match(/\S$/) && r.match(/^\w/)) txt = txt + " ";
     }
     // if editable node
-    if(range.startContainer.$.nodeType == 3) {
+    var rs = range.startContainer;
+    if(rs.$.nodeType == 3) {
+      // render txt as html
+      var div = document.createElement("div");
+      div.innerHTML = txt;
+      txt = div.innerText || div.textContent || txt;
       // modify node text
-      l = l + txt; range.startContainer.setText(l + r);
+      l = l + txt; rs.setText(l + r);
       // set cursor after
-      range.setStart(range.startContainer, l.length);
-      range.setEnd(range.startContainer,   l.length);
-      selection.selectRanges([range]);      
+      range.setStart(rs, l.length);
+      range.setEnd(rs,   l.length);
+      selection.selectRanges([range]);
     } else editor1.insertHtml(txt); // create new node
 }
 })();
