@@ -1,6 +1,6 @@
 /**                                       -*- coding: utf-8 -*-
 * @fileOverview Speech+ Plugin for CKeditor 4
-* @license Copyright (c) 2017-2019 by Henry Kroll III of thenerdshow.com All rights reserved.
+* @license Copyright (c) 2017-2020 by Henry Kroll III of thenerdshow.com All rights reserved.
 * For a copy of the Apache 2.0 license, see LICENSE.txt
 *
 * Adapted from:
@@ -132,69 +132,28 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       }
     }
   }
-var first_char = /\S/;
-function capitalize(s) {
-  return s.replace(first_char, function(m) { return m.toUpperCase(); });
-}
+
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 
-/** getLR by Henry Kroll, www.thenerdshow.com
+/** getLR
 * Get text to the left and right of current selection
 * These are CKEditor ranges. They have their own syntax.
-* within parent of selection nodes.
 */
-// hints from http://stackoverflow.com/questions/4811822/get-a-ranges-start-and-end-offsets-relative-to-its-parent-container
-function getLR() { 
+function getLR(range) { 
     // get text to left of cursor
-    var s = editor1.getSelection(),
-    ro = s.getRanges()[0],
-    rsc = ro.startContainer, roff = ro.startOffset,
-    rc = ro.clone();
-    rc.selectNodeContents(ro.getCommonAncestor());
-    rc.setEnd(rsc, roff);
-    var rcc = rc.cloneContents(),
-    l = rcc.$.textContent;
-    if (rc.startContainer.$.firstChild === ro.startContainer.$){
-        l = l.substr(0, ro.startOffset);
-    }
-    // get text to right of cursor
-    rc.selectNodeContents(ro.getCommonAncestor());
-    rc.setStart(ro.endContainer, ro.endOffset);
-    var rcc = rc.cloneContents(),
-    r = rcc.$.textContent; // text to right of cursor
-    return [l,r];
-}
-
-/** delete i chars in range
-* These are CKEditor ranges. They have their own syntax.
-*/
-function del(range, i) {
-    var rc = range.clone();
-    if (rc.startContainer.$.nodeType == 3) { // is a text node
-        rc.setStart(range.startContainer, range.startOffset);
-        rc.setEnd(range.startContainer, range.startOffset + i + 1);
-    }
-    else { // nodetype 1
-        var a = rc.getNextNode();
-        if (a.$.nodeType == 3) {
-            rc.selectNodeContents(a);
-            rc.setStart(a, i);
-            var l = rc.startContainer.$.textContent.length;
-            if (l < i + 1) {
-                rc.setEnd(rc.getNextEditableNode(), i - l + 1);
-            } else {
-                rc.setEnd(a, 1 + i);
-    }   }   }
-    rc.deleteContents();
-    // restores sanity to the range, sort of...
-    var a = rc.getNextNode();
-    rc.selectNodeContents(a);
-    rc.collapse();
-    return rc;
+  var r, l;
+  if (range.startContainer.$.nodeType == 1) {
+    l = range.startContainer.getChild(range.startOffset - 1).getText();
+    r = "";
+  } else {
+    r = range.startContainer.getText().slice(range.endOffset);
+    l = range.startContainer.getText().slice(0, range.startOffset);
+  }
+  return [l,r];
 }
 
 /** backspace
@@ -213,17 +172,6 @@ function bs(range) {
         rc.startOffset = rc.endOffset - 1;
     }
     rc.deleteContents();
-}
-
-// restores sanity to the range, sort of...
-function fixRange(range) {
-    var rc = range.clone();
-    var a = rc.getNextNode();
-    if(a){
-        rc.setEnd(a, 0);
-        rc.collapse();
-    }
-    return rc;
 }
 
 /** insertText by Henry Kroll, www.thenerdshow.com
@@ -282,7 +230,7 @@ function insertText(editor1, txt) {
                     selection.selectRanges([range]);
                     element.getParent().scrollIntoView();
                     return;
-                } catch { }
+                } catch { continue; }
             }
         }
     }
@@ -305,7 +253,8 @@ function insertText(editor1, txt) {
     txt = txt.replace(/open bracket\s?/gi, "[");
     txt = txt.replace(/\s?close bracket/gi, "]");
     txt = txt.replace(/\s?colon$/gi, ":");
-    txt = txt.replace(/\s?comma/gi, ",");
+    txt = txt.replace(/\s?comma$/gi, ",");
+    txt = txt.replace(/\s?comma\s/gi, ", ");
     txt = txt.replace(/\s?semicolon$/gi, ";");
     txt = txt.replace(/open parentheses\s?/gi, "(");
     txt = txt.replace(/\s?close parentheses/gi, ")");
@@ -327,82 +276,54 @@ function insertText(editor1, txt) {
     // Capitalization / punctuation logic is for right-to-left
     // languages, so we prepared an if statement to check this.
     // March 06, 2017
-    var t = range.getCommonAncestor().$;
-    var rtl = getComputedStyle(t.parentElement).direction;
-    if (rtl == "ltr") {
-        var [l,r] = getLR();
-        // Only capitalize sentences (Kroll, February 02, 2017)
-        var bt = ""; // look for previous punctuation
-        var at = ""; // look ahead for text
-        var unCap = false;
-        var reCap = false;
-        var i,rc;
-        // look <-|-> two spaces each way for punctuation
-        bt = l.substr(- 2, 2);
-        at = r.substr(0, 2);
-        // if inserting a sentence in the middle of another sentence 
-        // we want to break it up and reCap the new start
-        var m = r.match(/^\s*[a-z]/); // text after selection is lower
-        i = m? m[0].length:0; // i= pos. of lower case word start
-        if (i // if followed by lower case letter
+    if (selection.root.getDirection(1) == "ltr") {
+        var i, [l,r] = getLR(range);
+        function regStart(txt, reg) {
+          var m = txt.match(reg);
+          return m? m[0].length - 1 : -1;
+        }
+        function capitalize(s, cap = true) {
+          return s.replace(/\w/, function(m) { 
+            return cap? m.toUpperCase() : m.toLowerCase();
+          });
+        }
+        // if inserting a punctuated sentence in the middle of another
+        // cap next fragment
+        if (regStart(r, /^\s*[a-z]/) >= 0 // if followed by lower case letter
             && txt.match(/[.:!?…]$/) // and txt ends with .
-        ) { // break sentence and reCap new start
-            rc = del(range, i -= 1);
-            reCap = true;
-            txt = txt + " ";
+        ) {
+            txt = txt + " ", r = capitalize(r.trimStart());
         }
-        // if starting with punctuation in the middle of a sentence 
-        if (!range.checkStartOfBlock() && txt.match(/^[.,-@:!?"'…]/)){
-            // erase any trailing spaces before the .
-            if (bt.match(/\s$/)){
-                rc = bs(range);
+        // if inserting punctuation at start
+        if (txt.match(/^[.,-@:!?"'…]/)){
+            l = l.trimEnd();
+            // Cap remaining dictated fragment, if any
+            if ((i = regStart(txt, /^[ .:!?…]*[a-z]/) >= 0)) {
+                txt = txt.substr(0, i) + txt[i].toUpperCase()
+                + txt.substr(i + 1);
             }
-            m = txt.match(/^[ .:!?…]*[a-z]/);
-            var j = m? m[0].length - 1: -1;
-            // Capitalize the text to insert, if there is any
-            if (j >= 0) {
-                txt = txt.substr(0, j) + txt[j].toUpperCase()
-                + txt.substr(j+1);
-            }
+        } else if (l.match(/\S$/)) {
+          // insert space between fragments
+          txt = " " + txt;
         }
-        if (range.checkStartOfBlock() || bt.match(/[.:!?…]/)) {
+        // cap start of new sentence fragment
+        if (l.match(/^\s?$/) || l.match(/[.:!?…]\s?$/)) {
             txt = capitalize(txt);
-            // uncap next sentence if inserting new text at start
-            unCap = at.match(/[A-Z]/) && txt.match(/[^.:!?…]\s?$/);
+            // if fragment not punctuated, uncap (merge) remaining fragment
+            if (r.match(/^\s?[A-Z]/) && txt.match(/[^.:!?…]\s?$/))
+              r = capitalize(r, false);
         }
-        // Only insert space if necessary (Kroll, February 02, 2017)
-        if (!range.checkStartOfBlock()     // when continuing a line
-            && bt.match(/\S$/)   // after non-space,
-            && txt[0].match(/[^.,-@:!?'…]/)) { // & not adding punctuation
-            txt = " " + txt;
-        }
-        // Add space at end if caret is followed by text, unless single
-        if (at.match(/^\w/) && !txt.match(/^[^a-z]$/i)) txt = txt + " ";
-        // uncap sentence if adding text to the beginning
-        // unless the added text is a complete sentence
-        if (unCap){
-            // see https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
-            // see http://docs.ckeditor.com/#!/api/CKEDITOR.dom.range
-            // delete next character.
-            i = at.search(/[A-Z]/);
-            rc = del(range, i);
-        }
-        rc = fixRange(range);
+        // Add space if joining words
+        if (txt.match(/\S$/) && r.match(/^\w/)) txt = txt + " ";
     }
-    editor1.insertHtml(txt);
-    if (unCap) {
-        var t = editor1.document.createText(
-            at[i].toLowerCase());
-        rc.insertNode(t);
-    } 
-    if (reCap) {
-        var t = editor1.document.createText(
-            at[i].toUpperCase());
-        rc.insertNode(t);
-    }
-    if (rc) {
-        var p = range.getCommonAncestor();
-        if (p && p.normalize) p.normalize();
-    }
+    // if editable node
+    if(range.startContainer.$.nodeType == 3) {
+      // modify node text
+      l = l + txt; range.startContainer.setText(l + r);
+      // set cursor after
+      range.setStart(range.startContainer, l.length);
+      range.setEnd(range.startContainer,   l.length);
+      selection.selectRanges([range]);      
+    } else editor1.insertHtml(txt); // create new node
 }
 })();
