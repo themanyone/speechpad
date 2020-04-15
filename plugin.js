@@ -147,8 +147,8 @@ function getLR(range) {
     // get text to left of cursor
   var r, l;
   if (range.startContainer.$.nodeType == 1) {
-    l = range.startContainer.getChild(range.startOffset - 1).getText();
-    r = "";
+    var lr = range.startContainer.getChild(range.startOffset - 1);
+    l = lr? lr.getText() : "", r = "";
   } else {
     r = range.startContainer.getText().slice(range.endOffset);
     l = range.startContainer.getText().slice(0, range.startOffset);
