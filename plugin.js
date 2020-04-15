@@ -191,6 +191,11 @@ function insertText(editor1, txt) {
       range.setEnd(  element, start? 0 : element.$.length);
       selection.selectRanges([range]);
     }
+    function capitalize(s, cap = true) {
+      return s.match(/^\s?\w/)? s.replace(/\w/, function(m) { 
+        return cap? m.toUpperCase() : m.toLowerCase();
+      }): s;
+    }
   
     //voice editing commands
     if (txl == "whoops"
@@ -201,8 +206,10 @@ function insertText(editor1, txt) {
     if (txl == "select all")  return editor1.document.$.execCommand('SelectAll');
     if (txl == "maximize")    return editor1.execCommand("maximize");
     if (txl == "file save")   return fileSave(editor1);
-    if (txl == "backspace" )  return bs(range);    
+    if (txl == "backspace" )  return bs(range);
     if (txl == "delete that") return range.deleteContents();
+    if (txl == "capitalize that") txt = capitalize(selection.getSelectedText());
+    if (txl == "uncapitalize that") txt = capitalize(selection.getSelectedText(), false);
     if (txl == "mute")        return editor1.execCommand("speech");
     if (txl == "end of line") return gotoLine(selection.getStartElement());
     if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
@@ -265,7 +272,7 @@ function insertText(editor1, txt) {
     txt = txt.replace(/open.?.? curly quote\s?/gi, "&ldquo;");
     txt = txt.replace(/\s?close.? curly quote/gi, "&rdquo;");
     txt = txt.replace(/\s?long dash\s?/gi, "&mdash;");
-    txt = txt.replace(/\s?short dash\s?/gi, "&ndash;");
+    txt = txt.replace(/\s?short –\s?/gi, "&ndash;");
     txt = txt.replace(/\s?-\s?/gi, "-");
     txt = txt.replace(/ degrees Fahrenheit\s?/gi, "&deg;F");
     txt = txt.replace(/ degrees Ceckeditor_wiris_formulaEditor','ckeditor_wiris_formulaEditorChemistry','ckeditor_wiris_CASlsius\s?/gi, "&deg;C");
@@ -282,11 +289,6 @@ function insertText(editor1, txt) {
           var m = txt.match(reg);
           return m? m[0].length - 1 : -1;
         }
-        function capitalize(s, cap = true) {
-          return s.match(/^\s?\w/)? s.replace(/\w/, function(m) { 
-            return cap? m.toUpperCase() : m.toLowerCase();
-          }): s;
-        }
         // if inserting a punctuated sentence in the middle of another
         // cap next fragment
         if (regStart(r, /^\s*[a-z]/) >= 0 // if followed by lower case letter
@@ -295,14 +297,14 @@ function insertText(editor1, txt) {
             txt = txt + " ", r = capitalize(r.trimStart());
         }
         // if inserting punctuation at start
-        if (txt.match(/^[.,-@:!?"'…]/)){
+        if (txt.match(/^[.,-@:!?'…]/)){
             l = l.trimEnd();
             // Cap remaining dictated fragment, if any
             if ((i = regStart(txt, /^[ .:!?…]*[a-z]/) >= 0)) {
                 txt = txt.substr(0, i) + txt[i].toUpperCase()
                 + txt.substr(i + 1);
             }
-        } else if (l.match(/\S$/)) {
+        } else if (l.match(/[^\^\\'\/ [{$(@-–—]$/)) {
           // insert space between fragments
           txt = " " + txt;
         }
@@ -316,13 +318,15 @@ function insertText(editor1, txt) {
         // Add space if joining words
         if (txt.match(/\S$/) && r.match(/^\w/)) txt = txt + " ";
     }
+    // render HTML as text for inserting into text nodes
+    function renderHTML(txt) {
+      var tmpDiv = document.createElement("div"); tmpDiv.innerHTML = txt;
+      return tmpDiv.innerText || tmpDiv.textContent || txt;
+    }
     // if editable node
     var rs = range.startContainer;
     if(rs.$.nodeType == 3) {
-      // render txt as html
-      var div = document.createElement("div");
-      div.innerHTML = txt;
-      txt = div.innerText || div.textContent || txt;
+      txt = renderHTML(txt);
       // modify node text
       l = l + txt; rs.setText(l + r);
       // set cursor after
