@@ -196,6 +196,10 @@ function insertText(editor1, txt) {
         return cap? m.toUpperCase() : m.toLowerCase();
       }): s;
     }
+    function titleCaps(s) {
+      var words = s.toLowerCase().split(' ').map(word => capitalize(word));
+      return words.join(' ');
+    }
   
     //voice editing commands
     if (txl == "whoops"
@@ -208,8 +212,34 @@ function insertText(editor1, txt) {
     if (txl == "file save")   return fileSave(editor1);
     if (txl == "backspace" )  return bs(range);
     if (txl == "delete that") return range.deleteContents();
-    if (txl == "capitalize that") txt = capitalize(selection.getSelectedText());
+    if (txl == "embolden that")       return editor1.execCommand("bold");
+    if (txl == "italicize that")      return editor1.execCommand("italic");
+    if (txl == "strike that")         return editor1.execCommand("strike");
+    if (txl == "superscript that")    return editor1.execCommand("superscript");
+    if (txl == "subscript that")      return editor1.execCommand("subscript");
+    if (txl == "underline that")      return editor1.execCommand("underline");
+    if (txl == "blockquote that")     return editor1.execCommand("blockquote");
+    if (txl == "bullet that")         return CKEDITOR.tools.callFunction(97);
+    if (txl == "number that")         return CKEDITOR.tools.callFunction(94);
+    if (txl == "insert symbol")         return CKEDITOR.tools.callFunction(52);
+    if (txl == "insert horizontal line")return CKEDITOR.tools.callFunction(49);
+    
+    if (txl == "heading one")         return CKEDITOR.tools.callFunction(123,'h1');
+    if (txl == "heading two")         return CKEDITOR.tools.callFunction(123,'h2');
+    if (txl == "heading three")       return CKEDITOR.tools.callFunction(123,'h3');
+    if (txl == "left justify that")   return CKEDITOR.tools.callFunction(124,'Left');
+    if (txl == "center that")         return CKEDITOR.tools.callFunction(124,'Centered');
+    if (txl == "indent that")         return CKEDITOR.tools.callFunction(124,'Indented');
+    if (txl == "hanging indent that") return CKEDITOR.tools.callFunction(124,'Hanging');
+    if (txl == "color that red")    return CKEDITOR.tools.callFunction(124,'Red');
+    if (txl == "color that orange") return CKEDITOR.tools.callFunction(124,'Orange');
+    if (txl == "color that purple") return CKEDITOR.tools.callFunction(124,'Purple');
+    if (txl == "color that green") return CKEDITOR.tools.callFunction(124,'Green');
+    if (txl == "color that blue") return CKEDITOR.tools.callFunction(124,'Blue');
+    
+    if (txl == "capitalize that")   txt = capitalize(selection.getSelectedText());
     if (txl == "uncapitalize that") txt = capitalize(selection.getSelectedText(), false);
+    if (txl == "title case") txt = titleCaps(selection.getSelectedText());
     if (txl == "mute")        return editor1.execCommand("speech");
     if (txl == "end of line") return gotoLine(selection.getStartElement());
     if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
@@ -325,7 +355,7 @@ function insertText(editor1, txt) {
     }
     // if editable node
     var rs = range.startContainer;
-    if(rs.$.nodeType == 3) {
+    if(rs.$.nodeType == 3 && txt != "<p></p>") {
       txt = renderHTML(txt);
       // modify node text
       l = l + txt; rs.setText(l + r);
