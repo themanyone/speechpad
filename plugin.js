@@ -8,65 +8,103 @@
 * Agarwal, A. (2016). How to Add Speech Recognition to your Website. [tutorial] Retrieved February 01, 2017 from https://www.labnol.org/software/add-speech-recognition-to-website/19989/
 * CKSource. (2017). Creating a CKEditor Plugin in 20 Lines of Code Retrieved February 01, 2017 from http://docs.cksource.com/CKEditor_3.x/Tutorials/Timestamp_Plugin
 */
+
+var commands, translate, selection;
 ( function() {
 "use strict";
 var editor1 = CKEDITOR.instances[(Object.keys(CKEDITOR.instances)[0])];
-
+  
+// get language translated commands from lang/es.json
+function speechLang(slang){
+  const suffix = ".json?v=v7";
+  var lel = document.getElementById( 'languages' ) || {},
+  lang = slang || lel.value || editor1.config.language || "en-US";
+  const commandsPath = CKEDITOR.plugins.getPath("speech")+"commands"+suffix;
+  const translatePath = CKEDITOR.plugins.getPath("speech")+"lang/"+lang.slice(0,2)+suffix;
+  const fetchJson = async (path)=>(await fetch(path)).json();
+  fetchJson(commandsPath) .then(v=>commands = v);
+  if (lang.slice(0,2) != 'en') fetchJson(translatePath).then(v=>translate = v);
+  else translate = null;
+  return lang;
+}
 CKEDITOR.plugins.add( 'speech',
 {
+  icons: 'micadj,mic,system-help',
+  lang: 'af,ar,az,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,es-mx,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,oc,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn',
+  getCommands: ()=>commands||null,
+  setCommands: (c)=>commands=c,
+  getTranslate: ()=>translate||null,
+  setTranslate: (t)=>translate=t,
+  
 	init: function( editor1 )
 	{
 		//Plugin logic goes here.
-	}
-} );
+    var pluginName = 'speech',
+    lang = editor1.lang.speech;
 
-editor1.addCommand( 'help',
-	{
-		exec : function( editor1 )
+    editor1.addCommand( 'help',
+      {
+        exec : function( editor1 )
+            {
+                // load content from edit_help.html
+                window.open(CKEDITOR.getUrl("plugins/speech/edit_help.html"), '_blank');
+            }
+      });
+      
+    editor1.ui.addButton( 'SpeechHelp',
+      {
+        label: lang.xabout,
+        command: 'help',
+        icon: 'system-help', // http://fedoraproject.org/
+          toolbar: 'about,1'
+      } );
+
+    editor1.addCommand( 'speechCommands', new CKEDITOR.dialogCommand( 'speechCommandsDialog' ) );
+      editor1.ui.addButton( 'speechCmds', {
+          label: lang.xcommands,
+          command: 'speechCommands',
+          icon: 'micadj',
+          toolbar: 'about,1'
+      });
+      
+    CKEDITOR.dialog.add( 'speechCommandsDialog', this.path + 'dialogs/commands.js?v=6' );
+
+      editor1.ui.addButton( 'Speech',
+      {
+        label: lang.xspeech,
+        command: 'speech',
+        icon: 'mic',
+          toolbar: 'about'
+      } );
+
+      editor1.addCommand( 'speech',
         {
-            // load content from edit_help.html
-            window.open(CKEDITOR.getUrl("plugins/speech/edit_help.html"), '_blank');
-        }
-	});
+          exec : function( editor1 )
+              {
+                  startDictation( editor1 );
+                  var receiver = document.querySelector("#welcomeMessage");
+                  if (receiver) receiver.style.display="none";
+              }
+        });
 
-editor1.ui.addButton( 'SpeechHelp',
-{
-	label: 'Speech Help Alt+F1',
-	command: 'help',
-	icon: 'plugins/speech/system-help.gif', // http://fedoraproject.org/
-    toolbar: 'editing'
-} );
-
-editor1.addCommand( 'speech',
-	{
-		exec : function( editor1 )
-        {
-            startDictation( editor1 );
-        }
-	});
-
-editor1.ui.addButton( 'Speech',
-{
-	label: 'Speech Dictation',
-	command: 'speech',
-	icon: 'plugins/speech/mic.gif',
-    toolbar: 'editing'
-} );
-
-editor1.setKeystroke([
+        editor1.setKeystroke([
         [ CKEDITOR.ALT + 83 /*S*/, 'speech' ],
+        [ 27 /*Esc*/, 'speech' ],
         [ CKEDITOR.ALT + 112 /*F1*/, 'help' ],
 
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 70 /*F*/, 'removeFormat' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 82 /*R*/, 'right' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 76 /*L*/, 'left' ],
         [ CKEDITOR.ALT + CKEDITOR.SHIFT + 69 /*E*/, 'center' ],
-        [ CKEDITOR.ALT + CKEDITOR.SHIFT + 83 /*S*/, 'source' ],
-        [ CKEDITOR.CTRL + 13 /*S*/, 'source' ],
+        [ CKEDITOR.CTRL + 13 /*Enter*/, 'source' ],
         [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 76 /*L*/, 'link' ],
         [ CKEDITOR.CTRL + 77 /*M*/, 'maximize' ],
 
 ]);
+      speechLang();
+  
+  	}
+} );
 /*To use the recognition and synthesis parts of the spec in Firefox when it becomes available, you’ll need to enable the media.webspeech.recognition.enable and media.webspeech.synth.enabled flags in about:config.
 https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
 */
@@ -83,7 +121,7 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       }
       return;
     }
-    var bot = document.querySelector("#cke_1_bottom");
+    var bot = document.querySelector(".cke_bottom");
     if(!bot) bot = document.querySelector("#cke_1_top");
     var interim_span = document.createElement("span");
     bot.appendChild(interim_span);
@@ -94,9 +132,7 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       
       recognition.continuous = true;
       recognition.interimResults = true;
-      // default to browser's lang setting http://stackoverflow.com/questions/18557494/how-to-detect-users-language
-      recognition.lang = window.navigator.language
-            || navigator.userLanguage || "en-US";
+      recognition.lang = speechLang() || editor1.config.language;
       recognition.start();
       mic.style.background = "salmon";
       
@@ -144,7 +180,7 @@ function linebreak(s) {
 * These are CKEditor ranges. They have their own syntax.
 */
 function getLR(range) { 
-    // get text to left of cursor
+    // get text to left and right of cursor
   var r, l, rs = range.startContainer;
   if (rs.$.nodeType == 1) {
     var lr = rs.getChild(range.startOffset - 1);
@@ -179,9 +215,9 @@ function bs(range) {
 * @param {string} text to insert
 */
 function insertText(editor1, txt) {    
-    var selection = editor1.getSelection();
+    selection = editor1.getSelection();
     var range = selection.getRanges()[0];
-    var txl = txt.toLowerCase();
+    var txl = txt.toLocaleLowerCase();
   
     function gotoLine(element, start = false) {
       element.scrollIntoView();
@@ -191,94 +227,81 @@ function insertText(editor1, txt) {
       range.setEnd(  element, start? 0 : element.$.length);
       selection.selectRanges([range]);
     }
+    
     function capitalize(s, cap = true) {
       return s.match(/^\s?\w/)? s.replace(/\w/, function(m) { 
         return cap? m.toUpperCase() : m.toLowerCase();
       }): s;
     }
+    
     function titleCaps(s) {
       var words = s.toLowerCase().split(' ').map(word => capitalize(word));
       return words.join(' ');
     }
-  
-    //voice editing commands
-    if (txl == "whoops"
-     || txl == "what's"
-     || txl == "undo"
-    ) return editor1.undoManager.undo();
     
-    if (txl == "select all")  return editor1.document.$.execCommand('SelectAll');
-    if (txl == "maximize")    return editor1.execCommand("maximize");
-    if (txl == "file save")   return fileSave(editor1);
-    if (txl == "backspace" )  return bs(range);
-    if (txl == "delete that") return range.deleteContents();
-    if (txl == "embolden that")       return editor1.execCommand("bold");
-    if (txl == "italicize that")      return editor1.execCommand("italic");
-    if (txl == "strike that")         return editor1.execCommand("strike");
-    if (txl == "superscript that")    return editor1.execCommand("superscript");
-    if (txl == "subscript that")      return editor1.execCommand("subscript");
-    if (txl == "underline that")      return editor1.execCommand("underline");
-    if (txl == "blockquote that")     return editor1.execCommand("blockquote");
-    if (txl == "bullet that")         return CKEDITOR.tools.callFunction(97);
-    if (txl == "number that")         return CKEDITOR.tools.callFunction(94);
-    if (txl == "insert symbol")         return CKEDITOR.tools.callFunction(52);
-    if (txl == "insert horizontal line")return CKEDITOR.tools.callFunction(49);
-    
-    if (txl == "heading one")         return CKEDITOR.tools.callFunction(123,'h1');
-    if (txl == "heading two")         return CKEDITOR.tools.callFunction(123,'h2');
-    if (txl == "heading three")       return CKEDITOR.tools.callFunction(123,'h3');
-    if (txl == "left justify that")   return CKEDITOR.tools.callFunction(124,'Left');
-    if (txl == "center that")         return CKEDITOR.tools.callFunction(124,'Centered');
-    if (txl == "indent that")         return CKEDITOR.tools.callFunction(124,'Indented');
-    if (txl == "hanging indent that") return CKEDITOR.tools.callFunction(124,'Hanging');
-    if (txl == "color that red")    return CKEDITOR.tools.callFunction(124,'Red');
-    if (txl == "color that orange") return CKEDITOR.tools.callFunction(124,'Orange');
-    if (txl == "color that purple") return CKEDITOR.tools.callFunction(124,'Purple');
-    if (txl == "color that green") return CKEDITOR.tools.callFunction(124,'Green');
-    if (txl == "color that blue") return CKEDITOR.tools.callFunction(124,'Blue');
-    
-    if (txl == "capitalize that")   txt = capitalize(selection.getSelectedText());
-    if (txl == "uncapitalize that") txt = capitalize(selection.getSelectedText(), false);
-    if (txl == "title case that") txt = titleCaps(selection.getSelectedText());
-    if (txl == "mute")        return editor1.execCommand("speech");
-    if (txl == "end of line") return gotoLine(selection.getStartElement());
-    if (txl == "beginning of line") return gotoLine(selection.getStartElement(), true);
-    if (txl == "beginning of document") return gotoLine(selection.root.getFirst(), true);
-    if (txl == "go to the end" ||
-        txl == "end of document") return gotoLine(selection.root.getLast());
-    if (txl.search(/select /) > -1) {// see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
-        var findString = txt.slice(txt.indexOf(' ') + 1).toLowerCase();
-        var element = selection.getStartElement();
-        //wrap around search
-        var searchStart = element, count = 10000;
-        //find next if already selected
-        if (selection.getSelectedText().toLowerCase() == findString)
-            element = element.getNext();
-        while (element = element.getNextSourceNode()
-            || editor1.document.getBody().getFirst()) {
-            if (!(count -= 1) || element == searchStart) return; //not found
-            //search only text nodes
-            if (!element.$.nodeType == 3) continue;
-            var startIndex = element.getText().toLowerCase().indexOf(findString);
-            if (startIndex != -1) {
-              try {
-                    range.setStart(element, startIndex);
-                    range.setEnd(element, startIndex + findString.length);
-                    selection.selectRanges([range]);
-                    element.getParent().scrollIntoView();
-                    return;
-                } catch { continue; }
-            }
+    function selectWord(command, txl, before = false, after = false) {
+      // see https://stackoverflow.com/questions/4401469/how-to-select-a-text-range-in-ckeditor-programatically
+      var findString = txl.slice(command.toString().length -2);
+      var element = selection.getStartElement();
+      //wrap around search
+      var searchStart = element, count = 10000;
+      //find next if already selected
+      if (selection.getSelectedText().toLowerCase() == findString)
+        element = element.getNext();
+      while (element && (element = element.getNextSourceNode()
+        || editor1.document.getBody().getFirst())) {
+        if (!(count -= 1) || element == searchStart) return; //not found
+        //search only text nodes
+        if (!element.$.nodeType == 3) continue;
+        var startIndex = element.getText().toLowerCase().indexOf(findString);
+        if (startIndex != -1) {
+          try {
+            range.setStart(element, after? startIndex + findString.length: startIndex);
+            range.setEnd(element, before? startIndex: startIndex + findString.length);
+            selection.selectRanges([range]);
+            element.getParent().scrollIntoView();
+            return true;
+          } catch { continue; }
         }
+      } return false;
     }
+    
+    
+    
+    // export some shortcuts for commands to use
+    var ele = selection.getStartElement().$, html = ele.innerHTML;
+    function dce(e,t) {
+      var ele=document.createElement(e);
+      ele.innerHTML=t;
+      return ele;
+    }
+    
+    // translate txl lower-case text command
+    if (translate && translate[txl]) txl = txt = translate[txl];
+    
+    // perform txl voice editing commands
+    var command = commands[txl]||"";
+    if (command && command.match(/^return /)) return eval(command.slice(7));
+    else eval(command);
+    
+    // "select .*"
+    if (translate) command = RegExp(translate["select "]);
+    else command = RegExp(commands["select "]);
+    if (txl.search(command) >= 0 && selectWord(command, txl)) return;
+    
+    // "insert before .*"
+    if (translate) command = RegExp(translate["insert before "]);
+    else command = RegExp(commands["insert before "]);
+    if (txl.search(command) >= 0 && selectWord(command, txl, true)) return;
+    
+    // "insert after .*"
+    if (translate) command = RegExp(translate["insert after "]);
+    else command = RegExp(commands["insert after "]);
+    if (txl.search(command) >= 0 && selectWord(command, txl, false, true)) return;
     
     // fix missing punctuation in dictation AI (Kroll, February 03, 2017)
     txt = txt.replace(/HTTP colon slash slash\s?/i, "http://");
     txt = txt.replace(/HTTPS colon slash slash\s?/i, "https://");
-    txt = txt.replace(/make a link to (.*\.\w+)/i, 
-        function(match, $1){ return " <a href=\"http://" +$1.replace(/\s/g, "")});
-    txt = txt.replace(/\s?with link text\s?(.*)/i,
-        function(match, $1){ return "\">"+$1+"</a> " });
     txt = txt.replace(/\s?apostrophe\s?/gi, "&apos;");
     txt = txt.replace(/\s?tab key\s?/gi, "\t");
     txt = txt.replace(/\s?ellipses/gi, "&hellip;");
@@ -305,7 +328,7 @@ function insertText(editor1, txt) {
     txt = txt.replace(/\s?short –\s?/gi, "&ndash;");
     txt = txt.replace(/\s?-\s?/gi, "-");
     txt = txt.replace(/ degrees Fahrenheit\s?/gi, "&deg;F");
-    txt = txt.replace(/ degrees Ceckeditor_wiris_formulaEditor','ckeditor_wiris_formulaEditorChemistry','ckeditor_wiris_CASlsius\s?/gi, "&deg;C");
+    txt = txt.replace(/ degrees Celsius\s?/gi, "&deg;C");
     txt = txt.replace(/\s?copyright symbol\s?/gi, "&copy;");
     txt = txt.replace(/\s?trademark symbol\s?/gi, "&trade;");
 
@@ -334,7 +357,7 @@ function insertText(editor1, txt) {
                 txt = txt.substr(0, i) + txt[i].toUpperCase()
                 + txt.substr(i + 1);
             }
-        } else if (l.match(/[^\^\\'\/ [{$(@-–—]$/)) {
+        } else if (l.match(/[^\^\\'\/ \[{$\(@\-–—]$/)) {
           // insert space between fragments
           txt = " " + txt;
         }
@@ -355,7 +378,7 @@ function insertText(editor1, txt) {
     }
     // if editable node
     var rs = range.startContainer;
-    if(rs.$.nodeType == 3 && txt != "<p></p>") {
+    if(rs.$.nodeType == 3 && txt[0] != "<") {
       txt = renderHTML(txt);
       // modify node text
       l = l + txt; rs.setText(l + r);
