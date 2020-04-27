@@ -20,7 +20,7 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
             },
             {
                 id: 'tab-adv',
-                label: lang.special, //'Special Characters',
+                label: lang.xspecial, //'Special Characters',
                 elements: [
 
 
