@@ -75,7 +75,7 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
         ele1 = document.getElementById(id1),
         ele2 = document.getElementById(id2).querySelector("table"),
         commands = speech.getCommands(),
-        language = speech.getTranslate();
+        translate = speech.getTranslate();
         ele1.contentEditable = true;
         
         // style table
@@ -91,7 +91,7 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
         for (var i = 1; trs[i]; i++) trs[i].remove();
         // create reverse lookup language dictionary
         var dict = {};
-        if (translate)
+        if (typeof translate != "undefined" && translate)
         Object.keys(translate).forEach(function(e){
           if(e.slice(-1)==" ")
             dict[e] = translate[e];
