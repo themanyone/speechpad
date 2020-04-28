@@ -43,4 +43,6 @@
 "a sor vége":"end of line",
 "a sor eleje":"beginning of line",
 "a dokumentum kezdete":"beginning of document",
-"a dokumentum vége":"end of document"}
+"a dokumentum vége":"end of document",
+"parancsok megtekintése":"view commands"
+}

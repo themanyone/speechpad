@@ -43,4 +43,6 @@
 "rivin loppu":"end of line",
 "rivin alku":"beginning of line",
 "asiakirjan alku":"beginning of document",
-"asiakirjan loppu":"end of document"}
+"asiakirjan loppu":"end of document",
+"tarkastele komentoja":"view commands"
+}

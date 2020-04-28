@@ -43,4 +43,6 @@
 "行结束":"end of line",
 "行首":"beginning of line",
 "文件开始":"beginning of document",
-"文件结尾":"end of document"}
+"文件结尾":"end of document",
+"查看命令":"view commands"
+}

@@ -43,4 +43,6 @@
 "края на реда":"end of line",
 "началото на реда":"beginning of line",
 "началото на документа":"beginning of document",
-"края на документа":"end of document"}
+"края на документа":"end of document",
+"преглед на команди":"view commands"
+}

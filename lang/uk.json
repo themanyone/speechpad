@@ -43,4 +43,6 @@
 "кінець рядка":"end of line",
 "початок рядка":"beginning of line",
 "початок документа":"beginning of document",
-"кінець документа":"end of document"}
+"кінець документа":"end of document",
+"перегляд команд":"view commands"
+}

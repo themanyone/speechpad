@@ -43,4 +43,6 @@
 "סוף קו":"end of line",
 "תחילת השורה":"beginning of line",
 "תחילת המסמך":"beginning of document",
-"סוף המסמך":"end of document"}
+"סוף המסמך":"end of document",
+"הצג פקודות":"view commands"
+}

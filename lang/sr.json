@@ -43,4 +43,6 @@
 "Крај линије":"end of line",
 "почетак линије":"beginning of line",
 "почетак документа":"beginning of document",
-"крај документа":"end of document"}
+"крај документа":"end of document",
+"прегледајте команде":"view commands"
+}

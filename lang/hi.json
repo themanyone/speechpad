@@ -43,4 +43,6 @@
 "पंक्ति का अंत":"end of line",
 "लाइन की शुरुआत":"beginning of line",
 "दस्तावेज़ की शुरुआत":"beginning of document",
-"दस्तावेज़ का अंत":"end of document"}
+"दस्तावेज़ का अंत":"end of document",
+"आदेश देखें":"view commands"
+}

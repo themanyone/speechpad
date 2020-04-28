@@ -43,4 +43,6 @@
 "":"end of line",
 "":"beginning of line",
 "":"beginning of document",
-"":"end of document"}
+"":"end of document",
+"":"view commands"
+}

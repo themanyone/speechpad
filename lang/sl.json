@@ -43,4 +43,6 @@
 "konec vrstice":"end of line",
 "začetek vrstice":"beginning of line",
 "začetek dokumenta":"beginning of document",
-"konec dokumenta":"end of document"}
+"konec dokumenta":"end of document",
+"ogled ukazov":"view commands"
+}

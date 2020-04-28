@@ -43,4 +43,6 @@
 "lerroaren amaiera":"end of line",
 "lerroaren hasiera":"beginning of line",
 "dokumentuaren hasiera":"beginning of document",
-"dokumentuaren amaiera":"end of document"}
+"dokumentuaren amaiera":"end of document",
+"komandoak ikusteko":"view commands"
+}

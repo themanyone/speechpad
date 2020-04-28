@@ -43,4 +43,6 @@
 "آخر خط":"end of line",
 "ابتدای خط":"beginning of line",
 "شروع سند":"beginning of document",
-"پایان سند":"end of document"}
+"پایان سند":"end of document",
+"مشاهده دستورات":"view commands"
+}

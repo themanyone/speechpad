@@ -43,4 +43,6 @@
 "slutet av raden":"end of line",
 "början av raden":"beginning of line",
 "början av dokumentet":"beginning of document",
-"slutet på dokumentet":"end of document"}
+"slutet på dokumentet":"end of document",
+"visa kommandon":"view commands"
+}

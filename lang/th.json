@@ -43,4 +43,6 @@
 "จุดสิ้นสุดของบรรทัด":"end of line",
 "จุดเริ่มต้นของบรรทัด":"beginning of line",
 "จุดเริ่มต้นของเอกสาร":"beginning of document",
-"จุดสิ้นสุดของเอกสาร":"end of document"}
+"จุดสิ้นสุดของเอกสาร":"end of document",
+"ดูคำสั่ง":"view commands"
+}

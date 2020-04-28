@@ -43,4 +43,6 @@
 "rea lõpp":"end of line",
 "rea algus":"beginning of line",
 "dokumendi algus":"beginning of document",
-"dokumendi lõpp":"end of document"}
+"dokumendi lõpp":"end of document",
+"vaata käske":"view commands"
+}

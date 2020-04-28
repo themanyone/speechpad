@@ -43,4 +43,6 @@
 "fundi i rreshtit":"end of line",
 "fillimi i rreshtit":"beginning of line",
 "fillimi i dokumentit":"beginning of document",
-"fundi i dokumentit":"end of document"}
+"fundi i dokumentit":"end of document",
+"shikoni komandat":"view commands"
+}

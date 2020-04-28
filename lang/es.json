@@ -43,4 +43,6 @@
 "fin de la línea":"end of line",
 "comienzo de línea":"beginning of line",
 "comienzo del documento":"beginning of document",
-"fin del documento":"end of document"}
+"fin del documento":"end of document",
+"ver comandos":"view commands"
+}

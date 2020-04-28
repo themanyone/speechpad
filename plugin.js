@@ -16,7 +16,7 @@ var editor1 = CKEDITOR.instances[(Object.keys(CKEDITOR.instances)[0])];
   
 // get language translated commands from lang/es.json
 function speechLang(slang){
-  const suffix = ".json?v=v8";
+  const suffix = ".json?v=v9";
   var lel = document.getElementById( 'languages' ) || {},
   lang = slang || lel.value || editor1.config.language || "en-US";
   const commandsPath = CKEDITOR.plugins.getPath("speech")+"commands"+suffix;

@@ -43,4 +43,6 @@
 "বাক্যের শেষে":"end of line",
 "লাইনের শুরু":"beginning of line",
 "নথির শুরু":"beginning of document",
-"নথির শেষ":"end of document"}
+"নথির শেষ":"end of document",
+"কমান্ড দেখুন":"view commands"
+}

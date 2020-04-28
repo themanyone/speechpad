@@ -43,4 +43,6 @@
 "slutningen af linjen":"end of line",
 "begyndelsen af linjen":"beginning of line",
 "begyndelsen af dokumentet":"beginning of document",
-"slutningen af dokumentet":"end of document"}
+"slutningen af dokumentet":"end of document",
+"se kommandoer":"view commands"
+}

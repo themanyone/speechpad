@@ -43,4 +43,6 @@
 "шугамын төгсгөл":"end of line",
 "шугамын эхлэл":"beginning of line",
 "баримт бичгийн эхлэл":"beginning of document",
-"баримт бичгийн төгсгөл":"end of document"}
+"баримт бичгийн төгсгөл":"end of document",
+"командыг харах":"view commands"
+}

@@ -43,4 +43,6 @@
 "yolun sonu":"end of line",
 "satır başı":"beginning of line",
 "belgenin başlangıcı":"beginning of document",
-"belgenin sonu":"end of document"}
+"belgenin sonu":"end of document",
+"komutları görüntüle":"view commands"
+}

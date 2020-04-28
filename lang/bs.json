@@ -43,4 +43,6 @@
 "kraj linije":"end of line",
 "početak linije":"beginning of line",
 "početak dokumenta":"beginning of document",
-"kraj dokumenta":"end of document"}
+"kraj dokumenta":"end of document",
+"pregledajte naredbe":"view commands"
+}
