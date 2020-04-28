@@ -1,41 +1,20 @@
-# CKEditor Speech+ Voice Editor Plugin
+# SpeechPad CKEditor SpeechPad Voice Editor Plugin
 
-Realtime speech recognition *plus* voice controlled editing commands for [CKEditor-4](https://ckeditor.com/ckeditor-4/).
+Realtime speech recognition *plus* voice controlled editing commands for [CKEditor-4](https://ckeditor.com/ckeditor-4/). 
 
-Copyright &copy; 2019 Henry Kroll III. See LICENSE.txt for details. -- henry @ [thenerdshow.com](https://thenerdshow.com/)
+Copyright &copy; 2020 Henry Kroll III. See LICENSE.txt for details. -- henry @ [thenerdshow.com](https://thenerdshow.com/)
 
-## Quit losing work!
+## Implementations
 
-Most people should use our voice controlled HTML editor at [https://thenerdshow.com/edit.html](https://thenerdshow.com/edit.html).
+SpeechPad now has its own website. https://speechpad.tk/
 
-Our online editor saves work periodically, so you can shut down and continue at any time.
+It's a fully-functional, voice-controlled web page editor supporting 70 languages!
 
-## Other sites using Speech+ plugin
+Configure it to save work periodically, so you can shut down and continue at any time.
+
+## Other sites using SpeechPad plugin
 
 ### [fails.us](https://fails.us) - Voice-operated web design, social media, and search.
-
-* "Everything" mentioned on fails.us *becomes searchable* at *[everything.fails.us](http://everything.fails.us)*.
-* Blogs mentioning Trump appear at [trump.fails.us](http://Trump.fails.us) and [trump.isawesome.cf](http://Trump.isawesome.cf).
-* Our [everything.fails.us](http://everything.fails.us) searchlinks are clickable on Twitter without URL shorteners.
-* Sign up via Twitter and check the box to echo postings to Twitter.
-
-> Fails.us searchlinks are automatically mirrored to these other great domains.
-
-* [yourbrand.eq2.us](http://yourbrand.eq2.us)
-* [yourbrand.fails.us](http://yourbrand.fails.us)
-* [yourbrand.talkback.tk](http://yourbrand.talkback.tk)
-* [yourbrand.bartertown.tk](http://yourbrand.bartertown.tk)
-* [yourbrand.onaboat.tk](http://yourbrand.onaboat.tk)
-* [yourbrand.equal.cf](http://yourbrand.equal.cf)
-* [yourbrand.equalto.cf](http://yourbrand.equalto.cf)
-* [yourbrand.equals.cf](http://yourbrand.equals.cf)
-* [yourbrand.isawesome.cf](http://yourbrand.isawesome.cf)
-* [yourbrand.isfine.cf](http://yourbrand.isfine.cf)
-* [yourbrand.likesthis.cf](http://yourbrand.likesthis.cf)
-* [yourbrand.likethis.cf](http://yourbrand.likethis.cf)
-* [yourbrand.withgoats.cf](http://yourbrand.withgoats.cf)
-* [yourbrand.inabox.cf](http://yourbrand.inabox.cf)
-* [yourbrand.withafox.cf](http://yourbrand.withafox.cf)
 
 # Installation
 
@@ -68,14 +47,14 @@ for [Elgg](https://elgg.org/).
 permits turning CKEditor menu items on and off and permits reserving 
 some functions for admin users.
 
-We have to modify two more files to make Speech+ and other plugins work 
+We have to modify two more files to make SpeechPad and other plugins work 
 with the optional CKEditor Addons plugin. Remove `views.php` if 404 errors show up in the webserver logs complaining about a missing `ckeditor/assets/` directory. Change start.php:
 
 ```
 /my-www-root/my-website.com/mod/ckeditor_addons/start.php
 ```
 
-Add Speech+ menu items to the 'editing' line:
+Add SpeechPad menu items to the 'editing' line:
 
 ```
 'editing' => ['Find', 'Replace', 'SelectAll', 'Scayt', 'SpeechHelp', 'Speech'],
@@ -111,4 +90,4 @@ webserver directory.
 ```
 
 Thank you for using [CKEditor](https://ckeditor.com/ckeditor-4/) 
-Speech+ Voice Editor Plugin.
+SpeechPad Voice Editor Plugin.
