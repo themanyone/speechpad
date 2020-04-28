@@ -1,4 +1,4 @@
-/**                                       -*- coding: utf-8 -*-
+/** -*- coding: utf-8 -*-
 * @fileOverview Speech+ Plugin for CKeditor 4
 * @license Copyright (c) 2017-2020 by Henry Kroll III of thenerdshow.com All rights reserved.
 * For a copy of the Apache 2.0 license, see LICENSE.txt
@@ -9,14 +9,14 @@
 * CKSource. (2017). Creating a CKEditor Plugin in 20 Lines of Code Retrieved February 01, 2017 from http://docs.cksource.com/CKEditor_3.x/Tutorials/Timestamp_Plugin
 */
 
-var commands, translate, selection;
 ( function() {
 "use strict";
+var commands, translate, selection;
 var editor1 = CKEDITOR.instances[(Object.keys(CKEDITOR.instances)[0])];
   
 // get language translated commands from lang/es.json
 function speechLang(slang){
-  const suffix = ".json?v=v7";
+  const suffix = ".json?v=v8";
   var lel = document.getElementById( 'languages' ) || {},
   lang = slang || lel.value || editor1.config.language || "en-US";
   const commandsPath = CKEDITOR.plugins.getPath("speech")+"commands"+suffix;
@@ -299,38 +299,45 @@ function insertText(editor1, txt) {
     else command = RegExp(commands["insert after "]);
     if (txl.search(command) >= 0 && selectWord(command, txl, false, true)) return;
     
-    // fix missing punctuation in dictation AI (Kroll, February 03, 2017)
-    txt = txt.replace(/HTTP colon slash slash\s?/i, "http://");
-    txt = txt.replace(/HTTPS colon slash slash\s?/i, "https://");
-    txt = txt.replace(/\s?apostrophe\s?/gi, "&apos;");
-    txt = txt.replace(/\s?tab key\s?/gi, "\t");
-    txt = txt.replace(/\s?ellipses/gi, "&hellip;");
-    txt = txt.replace(/ampersand/gi, "&amp;");
-    txt = txt.replace(/\s?asterisk/gi, "*");
-    txt = txt.replace(/at sign/gi, "@");
-    txt = txt.replace(/\s?at symbol\s?/gi, "@");
-    txt = txt.replace(/\s?backslash\s?/gi, "\\");
-    txt = txt.replace(/open bracket\s?/gi, "[");
-    txt = txt.replace(/\s?close bracket/gi, "]");
-    txt = txt.replace(/\s?colon$/gi, ":");
-    txt = txt.replace(/\s?comma$/gi, ",");
-    txt = txt.replace(/\s?comma\s/gi, ", ");
-    txt = txt.replace(/\s?semicolon$/gi, ";");
-    txt = txt.replace(/open parentheses\s?/gi, "(");
-    txt = txt.replace(/\s?close parentheses/gi, ")");
-    txt = txt.replace(/less.than symbol\s?/gi, "&lt;");
-    txt = txt.replace(/\s?greater.than symbol/gi, "&gt;");
-    txt = txt.replace(/open quote\s?/gi, "\"");
-    txt = txt.replace(/\s?close quote/gi, "\"");
-    txt = txt.replace(/open.?.? curly quote\s?/gi, "&ldquo;");
-    txt = txt.replace(/\s?close.? curly quote/gi, "&rdquo;");
-    txt = txt.replace(/\s?long dash\s?/gi, "&mdash;");
-    txt = txt.replace(/\s?short –\s?/gi, "&ndash;");
+    //~ symbols.forEach(s=>
+      //~ txt = txt.replace(RegExp(s), symbols[s])
+    //~ );
+    
+    // fix messed-up spacing around hyphen
     txt = txt.replace(/\s?-\s?/gi, "-");
-    txt = txt.replace(/ degrees Fahrenheit\s?/gi, "&deg;F");
-    txt = txt.replace(/ degrees Celsius\s?/gi, "&deg;C");
-    txt = txt.replace(/\s?copyright symbol\s?/gi, "&copy;");
-    txt = txt.replace(/\s?trademark symbol\s?/gi, "&trade;");
+    
+    // These are already supported. No need to re-implement.
+    //~ HTTP colon slash slash
+    //~ comma
+    //~ period
+    //~ full stop
+    //~ colon
+    //~ dollars
+    //~ exclamation mark
+    //~ exclamation point
+    //~ new line
+    //~ new paragraph
+    //~ percent
+    //~ times
+    //~ slash
+    //~ ellipses
+    //~ at sign
+    //~ asterisk
+    //~ hashtag
+    //~ ampersand
+    //~ backslash
+    //~ semicolon
+    //~ open curly bracket
+    //~ close curly bracket
+    //~ square bracket
+    //~ [open] parentheses
+    //~ [close] parentheses
+    //~ open quote
+    //~ close quote
+    //~ quotation mark
+    //~ long dash
+    //~ dash
+    //~ underscore
 
     // from Browse Tutorials. (June, 2015). Get Cursor Position in CKEditor. Retrieved February 01, 2017 from https://browse-tutorials.com/snippet/get-cursor-position-ckeditor
     // Capitalization / punctuation logic is for right-to-left
