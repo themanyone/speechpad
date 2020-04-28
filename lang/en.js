@@ -8,7 +8,7 @@ CKEDITOR.plugins.setLang( 'speech', 'en', {
     xspoken: 'Spoken Commands',
     xspeech: 'Enable dictation',
     editable: 'Editable Commands',
-    special: 'Special Characters',
+    xspecial: 'Special Characters',
     saythis: 'Say this',
     dothis: 'To do this',
     typethis: 'To type this'
