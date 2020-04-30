@@ -120,42 +120,38 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
         recognition.stop();
       }
       return;
-    }
+    } else recognizing = true;
     var bot = document.querySelector(".cke_bottom");
     if(!bot) bot = document.querySelector("#cke_1_top");
     var interim_span = document.createElement("span");
     bot.appendChild(interim_span);
-    recognizing = true;
-    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition || mozSpeechRecognition || msSpeechRecognition || oSpeechRecognition;
     if (SpeechRecognition) {
       window.recognition = new SpeechRecognition();
-      
-      recognition.continuous = true;
+      // continuous mode causes Chrome Android to repeat sentences
+      recognition.continuous = false;
       recognition.interimResults = true;
       recognition.lang = speechLang() || editor1.config.language;
       recognition.start();
       mic.style.background = "salmon";
       
       recognition.onend = function() {
-        // keep it going
-        //~ recognition.start();
-        mic.style.background = "";
+        // keep it going maybe
+        if (recognizing) {
+          try { recognition.start(); }
+          catch {}
+        } else mic.style.background = "";
       };
       
       recognition.onresult = function(e) {
         var interim_transcript = '';
-        if (typeof(event.results) == 'undefined') {
-          recognition.onend = null;
-          recognition.stop();
-          mic.style.background = "";
-          return;
-        }
+        if (typeof event.results == 'undefined') return recognition.stop();
         for (var i = e.resultIndex; i < e.results.length; ++i) {
           if (e.results[i].isFinal) {
             final_transcript = linebreak(e.results[i][0].transcript);
             insertText(editor, final_transcript.trim());
           } else {
-            interim_transcript += e.results[i][0].transcript;
+            interim_transcript = e.results[i][0].transcript;
           }
         }
         interim_span.innerHTML = linebreak(interim_transcript);
@@ -169,9 +165,9 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
     }
   }
 
-var two_line = /\n\n/g;
-var one_line = /\n/g;
 function linebreak(s) {
+  var two_line = /\n\n/g;
+  var one_line = /\n/g;
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 
@@ -299,45 +295,8 @@ function insertText(editor1, txt) {
     else command = RegExp(commands["insert after "]);
     if (txl.search(command) >= 0 && selectWord(command, txl, false, true)) return;
     
-    //~ symbols.forEach(s=>
-      //~ txt = txt.replace(RegExp(s), symbols[s])
-    //~ );
-    
     // fix messed-up spacing around hyphen
     txt = txt.replace(/\s?-\s?/gi, "-");
-    
-    // These are already supported. No need to re-implement.
-    //~ HTTP colon slash slash
-    //~ comma
-    //~ period
-    //~ full stop
-    //~ colon
-    //~ dollars
-    //~ exclamation mark
-    //~ exclamation point
-    //~ new line
-    //~ new paragraph
-    //~ percent
-    //~ times
-    //~ slash
-    //~ ellipses
-    //~ at sign
-    //~ asterisk
-    //~ hashtag
-    //~ ampersand
-    //~ backslash
-    //~ semicolon
-    //~ open curly bracket
-    //~ close curly bracket
-    //~ square bracket
-    //~ [open] parentheses
-    //~ [close] parentheses
-    //~ open quote
-    //~ close quote
-    //~ quotation mark
-    //~ long dash
-    //~ dash
-    //~ underscore
 
     // from Browse Tutorials. (June, 2015). Get Cursor Position in CKEditor. Retrieved February 01, 2017 from https://browse-tutorials.com/snippet/get-cursor-position-ckeditor
     // Capitalization / punctuation logic is for right-to-left
@@ -394,5 +353,6 @@ function insertText(editor1, txt) {
       range.setEnd(rs,   l.length);
       selection.selectRanges([range]);
     } else editor1.insertHtml(txt); // create new node
+    editor1.undoManager.save(); // save undo point
 }
 })();
