@@ -3,7 +3,7 @@
 "insert before ":"insert before ",
 "insert after ":"insert after ",
 "whoops":"return editor1.undoManager.undo()",
-"oops":"return editor1.undoManager.undo()",
+"what's":"return editor1.undoManager.undo()",
 "undo":"return editor1.undoManager.undo()",
 "select all":"return editor1.commands.selectAll.exec()",
 "maximize":"return editor1.execCommand('maximize')",

@@ -108,19 +108,16 @@ CKEDITOR.plugins.add( 'speech',
 /*To use the recognition and synthesis parts of the spec in Firefox when it becomes available, you’ll need to enable the media.webspeech.recognition.enable and media.webspeech.synth.enabled flags in about:config.
 https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
 */
-  var recognizing = false;
+  var recognizing = 0;
   function startDictation(editor) {
+    function stopDictation(){
+      recognizing = 0; recognition.stop();
+    }
+    if (recognizing) return stopDictation();
+    else recognizing = 3; // try three times before giving up
     var mic_id = editor.ui.get("Speech")._.id;
     var mic = document.getElementById(mic_id);
     var final_transcript = '';
-    if (recognizing) {
-      recognizing = false;
-      mic.style.background = "";
-      if (typeof recognition != "undefined") {
-        recognition.stop();
-      }
-      return;
-    } else recognizing = true;
     var bot = document.querySelector(".cke_bottom");
     if(!bot) bot = document.querySelector("#cke_1_top");
     var interim_span = document.createElement("span");
@@ -137,15 +134,21 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       
       recognition.onend = function() {
         // keep it going maybe
-        if (recognizing) {
-          try { recognition.start(); }
-          catch {}
-        } else mic.style.background = "";
+        if (recognizing) { recognizing--;
+          try {
+            recognition.start(); 
+            mic.style.background = "salmon";
+          } catch (err){ 
+            //~ console.error(err);
+          }
+        } else {
+          mic.style.background = "";
+        }
       };
       
       recognition.onresult = function(e) {
-        var interim_transcript = '';
-        if (typeof event.results == 'undefined') return recognition.stop();
+        var interim_transcript = ''; recognizing = 3;
+        if (typeof e.results == 'undefined') return recognition.stop();
         for (var i = e.resultIndex; i < e.results.length; ++i) {
           if (e.results[i].isFinal) {
             final_transcript = linebreak(e.results[i][0].transcript);
@@ -158,9 +161,6 @@ https://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/
       };
       
       recognition.onerror = function(e) {
-        recognizing = false;
-        recognition.stop();
-        mic.style.background = "";
       }
     }
   }
@@ -319,7 +319,7 @@ function insertText(editor1, txt) {
         if (txt.match(/^[.,-@:!?'…]/)){
             l = l.trimEnd();
             // Cap remaining dictated fragment, if any
-            if ((i = regStart(txt, /^[ .:!?…]*[a-z]/) >= 0)) {
+            if ((i = regStart(txt, /^[ .:!?…]*[a-z]/)) > 0) {
                 txt = txt.substr(0, i) + txt[i].toUpperCase()
                 + txt.substr(i + 1);
             }
