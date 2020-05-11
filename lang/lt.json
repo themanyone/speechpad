@@ -44,5 +44,8 @@
 "eilutės pradžia":"beginning of line",
 "dokumento pradžia":"beginning of document",
 "dokumento pabaiga":"end of document",
-"peržiūrėti komandas":"view commands"
+"peržiūrėti komandas":"view commands",
+"nauja pastraipa":"txt = '</p>'",
+"nauja linija":"txt = '<br>'",
+"Peržiūrėti šaltinį":"return editor1.commands.source.exec()"
 }

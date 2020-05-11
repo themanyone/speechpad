@@ -44,5 +44,8 @@
 "පේළියේ ආරම්භය":"beginning of line",
 "ලේඛනයේ ආරම්භය":"beginning of document",
 "ලේඛනයේ අවසානය":"end of document",
-"විධාන බලන්න":"view commands"
+"විධාන බලන්න":"view commands",
+"නව ඡේදය":"txt = '</p>'",
+"නව මාර්ගය":"txt = '<br>'",
+"මූලාශ්‍රය බලන්න":"return editor1.commands.source.exec()"
 }

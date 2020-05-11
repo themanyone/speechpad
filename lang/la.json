@@ -44,5 +44,8 @@
 "principium lineae":"beginning of line",
 "beginning of document":"beginning of document",
 "finis document":"end of document",
-"visum imperium":"view commands"
+"visum imperium":"view commands",
+"novum caput":"txt = '</p>'",
+"novam lineam":"txt = '<br>'",
+"visum fons":"return editor1.commands.source.exec()"
 }

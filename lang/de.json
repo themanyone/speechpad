@@ -44,5 +44,8 @@
 "Zeilenanfang":"beginning of line",
 "Anfang des Dokuments":"beginning of document",
 "Ende des Dokuments":"end of document",
-"Befehle anzeigen":"view commands"
+"Befehle anzeigen":"view commands",
+"neuer Absatz":"txt = '</p>'",
+"Neue Zeile":"txt = '<br>'",
+"Quelltext anzeigen":"return editor1.commands.source.exec()"
 }

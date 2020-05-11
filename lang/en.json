@@ -44,5 +44,8 @@
 "":"beginning of line",
 "":"beginning of document",
 "":"end of document",
-"view commands":"view commands"
+"":"view commands",
+"":"new paragraph",
+"":"new line",
+"":"view source"
 }

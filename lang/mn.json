@@ -44,5 +44,8 @@
 "шугамын эхлэл":"beginning of line",
 "баримт бичгийн эхлэл":"beginning of document",
 "баримт бичгийн төгсгөл":"end of document",
-"командыг харах":"view commands"
+"командыг харах":"view commands",
+"шинэ догол мөр":"txt = '</p>'",
+"шинэ шугам":"txt = '<br>'",
+"эх сурвалжийг харах":"return editor1.commands.source.exec()"
 }

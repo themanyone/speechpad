@@ -44,5 +44,8 @@
 "destpêka xeta":"beginning of line",
 "destpêka belgeyê":"beginning of document",
 "dawiya belgeyê":"end of document",
-"emrên binêrin":"view commands"
+"emrên binêrin":"view commands",
+"meseleya nû":"txt = '</p>'",
+"xeta nû":"txt = '<br>'",
+"çavkaniya binêrin":"return editor1.commands.source.exec()"
 }

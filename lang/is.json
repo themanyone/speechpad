@@ -44,5 +44,8 @@
 "upphaf línunnar":"beginning of line",
 "upphaf skjals":"beginning of document",
 "lok skjals":"end of document",
-"skoða skipanir":"view commands"
+"skoða skipanir":"view commands",
+"ný málsgrein":"txt = '</p>'",
+"ný lína":"txt = '<br>'",
+"skoða heimild":"return editor1.commands.source.exec()"
 }

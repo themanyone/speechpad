@@ -44,5 +44,8 @@
 "mulai dari garis":"beginning of line",
 "mulai dari dokumen":"beginning of document",
 "akhir dokumen":"end of document",
-"lihat perintah":"view commands"
+"lihat perintah":"view commands",
+"paragraf baru":"txt = '</p>'",
+"garis baru":"txt = '<br>'",
+"Lihat sumber":"return editor1.commands.source.exec()"
 }

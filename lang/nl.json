@@ -44,5 +44,8 @@
 "begin van de regel":"beginning of line",
 "begin van document":"beginning of document",
 "einde document":"end of document",
-"opdrachten bekijken":"view commands"
+"opdrachten bekijken":"view commands",
+"nieuwe paragraaf":"txt = '</p>'",
+"nieuwe lijn":"txt = '<br>'",
+"bron bekijken":"return editor1.commands.source.exec()"
 }

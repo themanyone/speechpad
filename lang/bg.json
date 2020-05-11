@@ -44,5 +44,8 @@
 "началото на реда":"beginning of line",
 "началото на документа":"beginning of document",
 "края на документа":"end of document",
-"преглед на команди":"view commands"
+"преглед на команди":"view commands",
+"нов параграф":"txt = '</p>'",
+"нова линия":"txt = '<br>'",
+"виж източника":"return editor1.commands.source.exec()"
 }

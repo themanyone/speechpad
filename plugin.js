@@ -212,7 +212,7 @@ function bs(range) {
 */
 function insertText(editor1, txt) {    
     selection = editor1.getSelection();
-    var range = selection.getRanges()[0];
+    var range = selection?selection.getRanges()[0]:null;
     var txl = txt.toLocaleLowerCase();
   
     function gotoLine(element, start = false) {
@@ -265,7 +265,8 @@ function insertText(editor1, txt) {
     
     
     // export some shortcuts for commands to use
-    var ele = selection.getStartElement().$, html = ele.innerHTML;
+    var ele = selection?selection.getStartElement():null, html = ele?ele.innerHTML:null;
+    ele = ele? ele.$: null;
     function dce(e,t) {
       var ele=document.createElement(e);
       ele.innerHTML=t;
@@ -302,7 +303,7 @@ function insertText(editor1, txt) {
     // Capitalization / punctuation logic is for right-to-left
     // languages, so we prepared an if statement to check this.
     // March 06, 2017
-    if (selection.root.getDirection(1) == "ltr") {
+    if (range && selection && selection.root.getDirection(1) == "ltr") {
         var i, [l,r] = getLR(range);
         function regStart(txt, reg) {
           var m = txt.match(reg);
@@ -343,8 +344,8 @@ function insertText(editor1, txt) {
       return tmpDiv.innerText || tmpDiv.textContent || txt;
     }
     // if editable node
-    var rs = range.startContainer;
-    if(rs.$.nodeType == 3 && txt[0] != "<") {
+    var rs = range? range.startContainer: null;
+    if(rs && rs.$.nodeType == 3 && txt[0] != "<") {
       txt = renderHTML(txt);
       // modify node text
       l = l + txt; rs.setText(l + r);

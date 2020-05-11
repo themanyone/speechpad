@@ -44,5 +44,8 @@
 "قۇرنىڭ باشلىنىشى":"beginning of line",
 "ھۆججەتنىڭ باشلىنىشى":"beginning of document",
 "ھۆججەتنىڭ ئاخىرى":"end of document",
-"بۇيرۇقلارنى كۆرۈش":"view commands"
+"بۇيرۇقلارنى كۆرۈش":"view commands",
+"يېڭى ئابزاس":"txt = '</p>'",
+"يېڭى قۇر":"txt = '<br>'",
+"مەنبە":"return editor1.commands.source.exec()"
 }

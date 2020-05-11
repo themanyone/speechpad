@@ -44,5 +44,8 @@
 "begyndelsen af linjen":"beginning of line",
 "begyndelsen af dokumentet":"beginning of document",
 "slutningen af dokumentet":"end of document",
-"se kommandoer":"view commands"
+"se kommandoer":"view commands",
+"nyt afsnit":"txt = '</p>'",
+"ny linje":"txt = '<br>'",
+"se kilde":"return editor1.commands.source.exec()"
 }

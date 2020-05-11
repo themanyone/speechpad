@@ -44,5 +44,8 @@
 "αρχή της γραμμής":"beginning of line",
 "αρχή του εγγράφου":"beginning of document",
 "τέλος εγγράφου":"end of document",
-"δείτε εντολές":"view commands"
+"δείτε εντολές":"view commands",
+"νέα παράγραφος":"txt = '</p>'",
+"νέα γραμμή":"txt = '<br>'",
+"προβολή πηγής":"return editor1.commands.source.exec()"
 }

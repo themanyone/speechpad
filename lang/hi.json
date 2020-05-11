@@ -44,5 +44,8 @@
 "लाइन की शुरुआत":"beginning of line",
 "दस्तावेज़ की शुरुआत":"beginning of document",
 "दस्तावेज़ का अंत":"end of document",
-"आदेश देखें":"view commands"
+"आदेश देखें":"view commands",
+"नया पैराग्राफ":"txt = '</p>'",
+"नई पंक्ति":"txt = '<br>'",
+"स्रोत देखें":"return editor1.commands.source.exec()"
 }

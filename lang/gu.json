@@ -44,5 +44,8 @@
 "વાક્ય શરૂઆત":"beginning of line",
 "દસ્તાવેજની શરૂઆત":"beginning of document",
 "દસ્તાવેજનો અંત":"end of document",
-"આદેશો જુઓ":"view commands"
+"આદેશો જુઓ":"view commands",
+"નવો ફકરો":"txt = '</p>'",
+"નવી લાઇન":"txt = '<br>'",
+"સ્રોત જુઓ":"return editor1.commands.source.exec()"
 }

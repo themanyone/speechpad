@@ -44,5 +44,8 @@
 "ការចាប់ផ្តើមនៃបន្ទាត់":"beginning of line",
 "ការចាប់ផ្តើមនៃឯកសារ":"beginning of document",
 "ចុងបញ្ចប់នៃឯកសារ":"end of document",
-"មើលពាក្យបញ្ជា":"view commands"
+"មើលពាក្យបញ្ជា":"view commands",
+"កថាខណ្ឌថ្មី":"txt = '</p>'",
+"បន្ទាត់ថ្មី":"txt = '<br>'",
+"មើលប្រភព":"return editor1.commands.source.exec()"
 }

@@ -45,5 +45,8 @@
 "beginning of line":"return gotoLine(selection.getStartElement(), true)",
 "beginning of document":"return gotoLine(selection.root.getFirst(), true)",
 "end of document":"return gotoLine(selection.root.getLast())",
-"view commands":"return editor1.openDialog('speechCommandsDialog')"
+"view commands":"return editor1.openDialog('speechCommandsDialog')",
+"new paragraph":"txt = '</p>'",
+"new line":"txt = '<br>'",
+"view source":"return editor1.commands.source.exec()"
 }

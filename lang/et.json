@@ -44,5 +44,8 @@
 "rea algus":"beginning of line",
 "dokumendi algus":"beginning of document",
 "dokumendi lõpp":"end of document",
-"vaata käske":"view commands"
+"vaata käske":"view commands",
+"uus lõik":"txt = '</p>'",
+"uus rida":"txt = '<br>'",
+"vaata allikat":"return editor1.commands.source.exec()"
 }

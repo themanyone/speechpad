@@ -44,5 +44,8 @@
 "začiatok riadku":"beginning of line",
 "začiatok dokumentu":"beginning of document",
 "koniec dokumentu":"end of document",
-"zobraziť príkazy":"view commands"
+"zobraziť príkazy":"view commands",
+"nový odsek":"txt = '</p>'",
+"Nový riadok":"txt = '<br>'",
+"Zdroj pohladu":"return editor1.commands.source.exec()"
 }

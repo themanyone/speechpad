@@ -44,5 +44,8 @@
 "komenco de linio":"beginning of line",
 "komenco de dokumento":"beginning of document",
 "fino de dokumento":"end of document",
-"vidu ordonojn":"view commands"
+"vidu ordonojn":"view commands",
+"nova alineo":"txt = '</p>'",
+"nova linio":"txt = '<br>'",
+"vidpunkto":"return editor1.commands.source.exec()"
 }

@@ -44,5 +44,8 @@
 "začetek vrstice":"beginning of line",
 "začetek dokumenta":"beginning of document",
 "konec dokumenta":"end of document",
-"ogled ukazov":"view commands"
+"ogled ukazov":"view commands",
+"nov odstavek":"txt = '</p>'",
+"nova vrstica":"txt = '<br>'",
+"ogled vira":"return editor1.commands.source.exec()"
 }

@@ -44,5 +44,8 @@
 "почетак линије":"beginning of line",
 "почетак документа":"beginning of document",
 "крај документа":"end of document",
-"прегледајте команде":"view commands"
+"прегледајте команде":"view commands",
+"нови став":"txt = '</p>'",
+"Нова линија":"txt = '<br>'",
+"погледај извор":"return editor1.commands.source.exec()"
 }

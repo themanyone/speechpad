@@ -44,5 +44,8 @@
 "satır başı":"beginning of line",
 "belgenin başlangıcı":"beginning of document",
 "belgenin sonu":"end of document",
-"komutları görüntüle":"view commands"
+"komutları görüntüle":"view commands",
+"yeni paragraf":"txt = '</p>'",
+"Yeni hat":"txt = '<br>'",
+"kaynağı görüntüle":"return editor1.commands.source.exec()"
 }

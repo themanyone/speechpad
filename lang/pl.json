@@ -44,5 +44,8 @@
 "początek linii":"beginning of line",
 "początek dokumentu":"beginning of document",
 "koniec dokumentu":"end of document",
-"przeglądać polecenia":"view commands"
+"przeglądać polecenia":"view commands",
+"nowy akapit":"txt = '</p>'",
+"Nowa linia":"txt = '<br>'",
+"Pokaż źródło":"return editor1.commands.source.exec()"
 }

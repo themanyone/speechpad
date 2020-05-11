@@ -44,5 +44,8 @@
 "початок рядка":"beginning of line",
 "початок документа":"beginning of document",
 "кінець документа":"end of document",
-"перегляд команд":"view commands"
+"перегляд команд":"view commands",
+"новий абзац":"txt = '</p>'",
+"нова лінія":"txt = '<br>'",
+"переглянути джерело":"return editor1.commands.source.exec()"
 }

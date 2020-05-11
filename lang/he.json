@@ -44,5 +44,8 @@
 "תחילת השורה":"beginning of line",
 "תחילת המסמך":"beginning of document",
 "סוף המסמך":"end of document",
-"הצג פקודות":"view commands"
+"הצג פקודות":"view commands",
+"פסקה חדשה":"txt = '</p>'",
+"שורה חדשה":"txt = '<br>'",
+"ראה מקור":"return editor1.commands.source.exec()"
 }

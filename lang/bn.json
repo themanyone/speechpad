@@ -44,5 +44,8 @@
 "লাইনের শুরু":"beginning of line",
 "নথির শুরু":"beginning of document",
 "নথির শেষ":"end of document",
-"কমান্ড দেখুন":"view commands"
+"কমান্ড দেখুন":"view commands",
+"নতুন অনুচ্ছেদ":"txt = '</p>'",
+"নতুন লাইন":"txt = '<br>'",
+"উৎস দেখুন":"return editor1.commands.source.exec()"
 }

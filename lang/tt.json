@@ -44,5 +44,8 @@
 "юл башы":"beginning of line",
 "документ башы":"beginning of document",
 "документ ахыры":"end of document",
-"боерыкларны карау":"view commands"
+"боерыкларны карау":"view commands",
+"яңа абзац":"txt = '</p>'",
+"яңа юл":"txt = '<br>'",
+"чыганакны карау":"return editor1.commands.source.exec()"
 }

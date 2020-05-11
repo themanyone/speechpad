@@ -44,5 +44,8 @@
 "بداية السطر":"beginning of line",
 "بداية الوثيقة":"beginning of document",
 "نهاية الوثيقة":"end of document",
-"عرض الأوامر":"view commands"
+"عرض الأوامر":"view commands",
+"فقرة جديدة":"txt = '</p>'",
+"خط جديد":"txt = '<br>'",
+"أنظر المصدر":"return editor1.commands.source.exec()"
 }

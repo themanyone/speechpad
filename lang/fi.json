@@ -44,5 +44,8 @@
 "rivin alku":"beginning of line",
 "asiakirjan alku":"beginning of document",
 "asiakirjan loppu":"end of document",
-"tarkastele komentoja":"view commands"
+"tarkastele komentoja":"view commands",
+"uusi kappale":"txt = '</p>'",
+"uusi rivi":"txt = '<br>'",
+"Katso lähde":"return editor1.commands.source.exec()"
 }

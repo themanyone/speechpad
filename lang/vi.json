@@ -44,5 +44,8 @@
 "đầu dòng":"beginning of line",
 "bắt đầu tài liệu":"beginning of document",
 "Kết thúc tài liệu":"end of document",
-"xem lệnh":"view commands"
+"xem lệnh":"view commands",
+"đoạn văn mới":"txt = '</p>'",
+"dòng mới":"txt = '<br>'",
+"xem nguồn":"return editor1.commands.source.exec()"
 }

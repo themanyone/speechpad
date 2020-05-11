@@ -44,5 +44,8 @@
 "fillimi i rreshtit":"beginning of line",
 "fillimi i dokumentit":"beginning of document",
 "fundi i dokumentit":"end of document",
-"shikoni komandat":"view commands"
+"shikoni komandat":"view commands",
+"paragrafi i ri":"txt = '</p>'",
+"rresht i ri":"txt = '<br>'",
+"Shiko burimin":"return editor1.commands.source.exec()"
 }

@@ -44,5 +44,8 @@
 "početak retka":"beginning of line",
 "početak dokumenta":"beginning of document",
 "kraj dokumenta":"end of document",
-"pregledajte naredbe":"view commands"
+"pregledajte naredbe":"view commands",
+"novi stavak":"txt = '</p>'",
+"nova linija":"txt = '<br>'",
+"pogledaj izvor":"return editor1.commands.source.exec()"
 }

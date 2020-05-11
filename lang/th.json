@@ -44,5 +44,8 @@
 "จุดเริ่มต้นของบรรทัด":"beginning of line",
 "จุดเริ่มต้นของเอกสาร":"beginning of document",
 "จุดสิ้นสุดของเอกสาร":"end of document",
-"ดูคำสั่ง":"view commands"
+"ดูคำสั่ง":"view commands",
+"ย่อหน้าใหม่":"txt = '</p>'",
+"บรรทัดใหม่":"txt = '<br>'",
+"ดูแหล่งที่มา":"return editor1.commands.source.exec()"
 }

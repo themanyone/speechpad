@@ -44,5 +44,8 @@
 "början av raden":"beginning of line",
 "början av dokumentet":"beginning of document",
 "slutet på dokumentet":"end of document",
-"visa kommandon":"view commands"
+"visa kommandon":"view commands",
+"nytt stycke":"txt = '</p>'",
+"ny linje":"txt = '<br>'",
+"visa källa":"return editor1.commands.source.exec()"
 }

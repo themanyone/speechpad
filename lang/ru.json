@@ -46,5 +46,8 @@
 "конец документа":"end of document",
 "просмотреть команды":"view commands",
 "больше чем символ":"greater than symbol",
-"просмотреть команды":"view commands"
+"просмотреть команды":"view commands",
+"новый абзац":"txt = '</p>'",
+"новая линия":"txt = '<br>'",
+"просмотреть исходный код":"return editor1.commands.source.exec()"
 }

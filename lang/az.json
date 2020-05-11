@@ -44,5 +44,8 @@
 "xəttin əvvəlində":"beginning of line",
 "sənədin başlanğıcı":"beginning of document",
 "sənədin sonu":"end of document",
-"əmrlərə baxın":"view commands"
+"əmrlərə baxın":"view commands",
+"yeni abzas":"txt = '</p>'",
+"yeni xətt":"txt = '<br>'",
+"mənbəyə bax":"return editor1.commands.source.exec()"
 }

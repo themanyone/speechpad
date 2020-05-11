@@ -44,5 +44,8 @@
 "ابتدای خط":"beginning of line",
 "شروع سند":"beginning of document",
 "پایان سند":"end of document",
-"مشاهده دستورات":"view commands"
+"مشاهده دستورات":"view commands",
+"بند جدید":"txt = '</p>'",
+"خط جدید":"txt = '<br>'",
+"مشاهده منبع":"return editor1.commands.source.exec()"
 }

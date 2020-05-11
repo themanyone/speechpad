@@ -44,5 +44,8 @@
 "principi de línia":"beginning of line",
 "inici del document":"beginning of document",
 "final del document":"end of document",
-"visualitza ordres":"view commands"
+"visualitza ordres":"view commands",
+"nou paràgraf":"txt = '</p>'",
+"nova línia":"txt = '<br>'",
+"Veure la font":"return editor1.commands.source.exec()"
 }

@@ -44,5 +44,8 @@
 "行頭":"beginning of line",
 "文書の始まり":"beginning of document",
 "文書の終わり":"end of document",
-"表示コマンド":"view commands"
+"表示コマンド":"view commands",
+"新しい段落":"txt = '</p>'",
+"改行":"txt = '<br>'",
+"ソースを表示":"return editor1.commands.source.exec()"
 }

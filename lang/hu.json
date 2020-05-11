@@ -44,5 +44,8 @@
 "a sor eleje":"beginning of line",
 "a dokumentum kezdete":"beginning of document",
 "a dokumentum vége":"end of document",
-"parancsok megtekintése":"view commands"
+"parancsok megtekintése":"view commands",
+"új bekezdés":"txt = '</p>'",
+"új sor":"txt = '<br>'",
+"Forrás megtekintése":"return editor1.commands.source.exec()"
 }

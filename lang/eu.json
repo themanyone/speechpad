@@ -44,5 +44,8 @@
 "lerroaren hasiera":"beginning of line",
 "dokumentuaren hasiera":"beginning of document",
 "dokumentuaren amaiera":"end of document",
-"komandoak ikusteko":"view commands"
+"komandoak ikusteko":"view commands",
+"paragrafo berria":"txt = '</p>'",
+"lerro berria":"txt = '<br>'",
+"ikus iturria":"return editor1.commands.source.exec()"
 }

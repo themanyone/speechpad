@@ -44,5 +44,8 @@
 "行首":"beginning of line",
 "文件开始":"beginning of document",
 "文件结尾":"end of document",
-"查看命令":"view commands"
+"查看命令":"view commands",
+"新段落":"txt = '</p>'",
+"新队":"txt = '<br>'",
+"查看源":"return editor1.commands.source.exec()"
 }

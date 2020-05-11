@@ -44,5 +44,8 @@
 "inicio da liña":"beginning of line",
 "inicio do documento":"beginning of document",
 "final do documento":"end of document",
-"ver comandos":"view commands"
+"ver comandos":"view commands",
+"parágrafo novo":"txt = '</p>'",
+"nova liña":"txt = '<br>'",
+"ver fonte":"return editor1.commands.source.exec()"
 }

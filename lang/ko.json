@@ -44,5 +44,8 @@
 "줄의 시작":"beginning of line",
 "문서의 시작":"beginning of document",
 "문서의 끝":"end of document",
-"명령보기":"view commands"
+"명령보기":"view commands",
+"새로운 단락":"txt = '</p>'",
+"새로운 줄":"txt = '<br>'",
+"소스보기":"return editor1.commands.source.exec()"
 }

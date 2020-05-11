@@ -44,5 +44,8 @@
 "līnijas sākums":"beginning of line",
 "dokumenta sākums":"beginning of document",
 "dokumenta beigas":"end of document",
-"skatiet komandas":"view commands"
+"skatiet komandas":"view commands",
+"jauna rindkopa":"txt = '</p>'",
+"jauna līnija":"txt = '<br>'",
+"skata avots":"return editor1.commands.source.exec()"
 }
