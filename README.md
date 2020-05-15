@@ -6,7 +6,7 @@ Copyright &copy; 2020 Henry Kroll III. See LICENSE.txt for details. -- henry @ [
 
 ## Implementations
 
-SpeechPad now has its own website. https://speechpad.tk/
+SpeechPad now has its own website. [speechpad.tk](https://speechpad.tk/)
 
 It's a fully-functional, voice-controlled web page editor supporting 70 languages!
 

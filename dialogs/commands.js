@@ -7,8 +7,8 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
 
         contents: [
             {
-                id: 'tab-basic',
-                label: lang.editable, //'Editable Commands',
+                id: 'tab-spoken',
+                label: lang.xspoken, //'Spoken Commands',
                 elements: [
 
 {
@@ -19,7 +19,19 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
             ]
             },
             {
-                id: 'tab-adv',
+                id: 'tab-editable',
+                label: lang.editable, //'Commands',
+                elements: [
+
+{
+    type: 'html',
+      id: 'editableCmds',
+    html: '<table spellcheck="false"><thead><th>'+lang.saythis+'</th><th>'+lang.dothis+'</th></thead><tbody><tr><td><input type=text></td><td><input type=text style=width:250px></td></tbody></table>&nbsp; <input type=button value=+ style=background:#09863e;width:15px;text-align:center;border-radius:2px;cursor:pointer>'
+}
+            ]
+            },
+            {
+                id: 'tab-characters',
                 label: lang.xspecial, //'Special Characters',
                 elements: [
 
@@ -69,14 +81,22 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
             
       onShow: function(e){
         // get element
-        var id1 = this.getContentElement('tab-basic','voiceCmds').domId,
-        id2 = this.getContentElement('tab-adv','voiceChars').domId,
+        var id1 = this.getContentElement('tab-spoken','voiceCmds').domId,
+        id2 = this.getContentElement('tab-characters','voiceChars').domId,
+        id3 = this.getContentElement('tab-editable','editableCmds').domId,
         speech = this.getParentEditor().plugins.speech,
         ele1 = document.getElementById(id1),
         ele2 = document.getElementById(id2).querySelector("table"),
+        ele3 = document.getElementById(id3),
         commands = speech.getCommands(),
         translate = speech.getTranslate();
-        ele1.contentEditable = true;
+        ele3.contentEditable = true;
+        
+        ele3.nextElementSibling.onclick=function(e){
+          window.tr = ele3.querySelector("tbody>tr");
+          cn = tr.cloneNode(true);
+          tr.insertAdjacentElement('afterend', cn);
+        };
         
         // style table
         var tdstyle = "box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFE, 0 1px 0 #FFE; padding-left: 3px";
@@ -85,6 +105,9 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
         ele2.style.background="rgb(234, 236, 253)";
         ele2.querySelectorAll("th").forEach(e=>e.style.fontWeight="bold");
         ele2.querySelectorAll("td").forEach(e=>e.style=tdstyle);
+        ele3.style.background="rgb(234, 236, 253)";
+        ele3.querySelectorAll("th").forEach(e=>e.style.fontWeight="bold");
+        ele3.querySelectorAll("td").forEach(e=>e.style=tdstyle);
         
         // clear commands table
         var trs = ele1.querySelectorAll("tr");
@@ -99,6 +122,13 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
             dict[translate[e]] = e;
         });
         
+        function htmlEnt(t){
+          return t.replace('<', '&lt;').replace('>', '&gt;');
+        }
+        function entHtml(t){
+          return t.replace('&lt;', '<').replace('&gt;', '>');
+        }
+        
         // build editable commands table dialog
         Object.keys(commands).forEach(function(k){
           var tr = document.createElement('tr');
@@ -106,14 +136,14 @@ CKEDITOR.dialog.add( 'speechCommandsDialog', function ( editor ) {
           td1.style = tdstyle;
           td1.innerHTML = (k in dict)? dict[k] : k;
           var td2 = document.createElement('td');
-          td2.innerHTML=commands[k]; td2.style = tdstyle;
+          td2.innerHTML=htmlEnt(commands[k]); td2.style = tdstyle;
           tr.appendChild(td1); tr.appendChild(td2);
           ele1.appendChild(tr);
         });
       },
       onOk: function(e){
         // get element
-        var id = this.getContentElement('tab-basic','voiceCmds').domId;
+        var id = this.getContentElement('tab-editable','editableCmds').domId;
         var ele = document.getElementById(id);
         
         
